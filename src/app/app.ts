@@ -11,15 +11,14 @@ import {DashboardModel, DashboardModelConfig} from './dashboard/models/Dashboard
 import {Utils} from './services/utils';
 import {DashboardPageComponent} from "./components/DashboardPageComponent";
 import {UsersWidget, UserTypesWidget} from "./dashboard/widgets/all_widgets";
-import {DashboardsService, DashboardFactory, WidgetFactory, WidgetsService} from "./dashboard/dashboard";
+import {DASHBOARD_PROVIDERS, DashboardsService} from "./dashboard/dashboard";
 
 @Component({
     selector: 'my-app',
     directives: [NgFor, ROUTER_DIRECTIVES],
     template: `
     	<nav class="main-nav">
-			<a *ng-for="#dashboard of allDashboards"
-			[router-link]="['DashboardPage',{ dashboardId: dashboard.id }]">{{dashboard.title}}</a>
+			<a *ng-for="#dashboard of allDashboards" [router-link]="['DashboardPage',{ dashboardId: dashboard.id }]">{{dashboard.title}}</a>
     	</nav>
         <router-outlet></router-outlet>
     `
@@ -41,11 +40,8 @@ class AppComponent{
 }
 bootstrap(AppComponent, [
 	HTTP_PROVIDERS,
-	DashboardsService,
-	DashboardFactory,
-	WidgetFactory,
-	WidgetsService,
 	ROUTER_PROVIDERS,
+	DASHBOARD_PROVIDERS,
 	UsersWidget, UserTypesWidget,
 	provide(LocationStrategy, { useClass: HashLocationStrategy })
 ]);

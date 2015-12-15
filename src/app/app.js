@@ -26,7 +26,7 @@ var AppComponent = (function () {
         angular2_1.Component({
             selector: 'my-app',
             directives: [angular2_1.NgFor, router_1.ROUTER_DIRECTIVES],
-            template: "\n    \t<nav class=\"main-nav\">\n\t\t\t<a *ng-for=\"#dashboard of allDashboards\"\n\t\t\t[router-link]=\"['DashboardPage',{ dashboardId: dashboard.id }]\">{{dashboard.title}}</a>\n    \t</nav>\n        <router-outlet></router-outlet>\n    "
+            template: "\n    \t<nav class=\"main-nav\">\n\t\t\t<a *ng-for=\"#dashboard of allDashboards\" [router-link]=\"['DashboardPage',{ dashboardId: dashboard.id }]\">{{dashboard.title}}</a>\n    \t</nav>\n        <router-outlet></router-outlet>\n    "
         }),
         router_1.RouteConfig([
             { path: '/', redirectTo: ["DashboardPage", { dashboardId: "main" }] },
@@ -38,11 +38,8 @@ var AppComponent = (function () {
 })();
 angular2_1.bootstrap(AppComponent, [
     http_1.HTTP_PROVIDERS,
-    dashboard_1.DashboardsService,
-    dashboard_1.DashboardFactory,
-    dashboard_1.WidgetFactory,
-    dashboard_1.WidgetsService,
     router_1.ROUTER_PROVIDERS,
+    dashboard_1.DASHBOARD_PROVIDERS,
     all_widgets_1.UsersWidget, all_widgets_1.UserTypesWidget,
     angular2_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })
 ]);

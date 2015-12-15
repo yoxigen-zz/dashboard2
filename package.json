@@ -1,0 +1,21 @@
+{
+  "name": "dashboard2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc -p src -w",
+    "start": "live-server --open=src"
+  },
+  "keywords": [],
+  "author": "Yossi Kolesnicov",
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "2.0.0-alpha.48",
+    "systemjs": "0.19.2",
+	"c3": "latest"
+  },
+  "devDependencies": {
+    "live-server": "^0.8.2",
+    "typescript": "^1.7.3"
+  }
+}

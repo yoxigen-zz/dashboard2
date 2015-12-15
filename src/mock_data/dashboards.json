@@ -1,0 +1,10 @@
+[
+  {
+	"id": "main",
+	"title": "Main",
+	"widgets": [
+	  { "id": "users" },
+	  { "id": "userTypes" }
+	]
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "name": "dashboard2",
+  "version": "0.0.1",
+  "dependencies": {
+	"c3": "latest"
+  }
+}

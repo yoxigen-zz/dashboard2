@@ -1,0 +1,29 @@
+$widgetMargin: 1rem;
+
+.dashboard {
+  background: $dashboardBackground;
+	padding: 1rem;
+
+  .widget {
+	margin: 0 0 $widgetMargin 0;
+	position: relative;
+	box-sizing: border-box;
+	background: White;
+
+	.widget-contents {
+	  background: White;
+	  border-radius: 2px;
+	  box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+	}
+
+	.widget-contents-header {
+	  padding: 1rem;
+	  border-radius: 2px 2px 0 0;
+	  border-bottom: $divider-border;
+	}
+
+	.widget-contents-body {
+	  padding: 1rem;
+	}
+  }
+}

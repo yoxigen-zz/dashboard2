@@ -1,24 +1,17 @@
-///<reference path="../../node_modules/angular2/http.d.ts"/>
+import {Component} from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {NgFor} from "angular2/common";
 
-'use strict';
-
-import {bootstrap, Component, NgIf, NgFor, provide} from 'angular2/angular2';
-import {RouteConfig, ROUTER_PROVIDERS, ROUTER_DIRECTIVES, LocationStrategy, HashLocationStrategy} from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http';
-
-import {DashboardModel, DashboardModelConfig} from './dashboard/models/DashboardModel';
-
-import {Utils} from './services/utils';
+import {DashboardModel} from './dashboard/models/DashboardModel';
 import {DashboardPageComponent} from "./components/DashboardPageComponent";
-import {UsersWidget, UserTypesWidget} from "./dashboard/widgets/all_widgets";
-import {DASHBOARD_PROVIDERS, DashboardsService} from "./dashboard/dashboard";
+import {DashboardsService} from "./dashboard/dashboard";
 
 @Component({
     selector: 'my-app',
     directives: [NgFor, ROUTER_DIRECTIVES],
     template: `
     	<nav class="main-nav">
-			<a *ng-for="#dashboard of allDashboards" [router-link]="['DashboardPage',{ dashboardId: dashboard.id }]">{{dashboard.title}}</a>
+			<a *ngFor="#dashboard of allDashboards" [routerLink]="['DashboardPage',{ dashboardId: dashboard.id }]">{{dashboard.title}}</a>
     	</nav>
         <router-outlet></router-outlet>
     `
@@ -27,7 +20,7 @@ import {DASHBOARD_PROVIDERS, DashboardsService} from "./dashboard/dashboard";
 	{ path: '/', redirectTo: ["DashboardPage", { dashboardId: "main" }] },
 	{ path: '/d/:dashboardId', component: DashboardPageComponent, name: "DashboardPage" }
 ])
-class AppComponent{
+export class AppComponent{
 	allDashboards:DashboardModel[];
 
 	constructor(dashboardsService:DashboardsService){
@@ -38,10 +31,3 @@ class AppComponent{
 		});
 	}
 }
-bootstrap(AppComponent, [
-	HTTP_PROVIDERS,
-	ROUTER_PROVIDERS,
-	DASHBOARD_PROVIDERS,
-	UsersWidget, UserTypesWidget,
-	provide(LocationStrategy, { useClass: HashLocationStrategy })
-]);

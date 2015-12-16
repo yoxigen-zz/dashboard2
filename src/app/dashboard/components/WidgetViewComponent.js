@@ -7,26 +7,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var angular2_1 = require('angular2/angular2');
+var core_1 = require('angular2/core');
 var WidgetViewTypeModel_1 = require("../models/WidgetViewTypeModel");
-var views_1 = require("./views/views");
+var views_1 = require("../views/views");
+var common_1 = require("angular2/common");
 var WidgetViewComponent = (function () {
     function WidgetViewComponent() {
     }
     __decorate([
-        angular2_1.Input(), 
+        core_1.Input(), 
         __metadata('design:type', WidgetViewTypeModel_1.WidgetViewTypeModel)
     ], WidgetViewComponent.prototype, "view", void 0);
     __decorate([
-        angular2_1.Input(), 
+        core_1.Input(), 
         __metadata('design:type', Object)
     ], WidgetViewComponent.prototype, "data", void 0);
     WidgetViewComponent = __decorate([
-        angular2_1.Component({
+        core_1.Component({
             selector: "widget-view",
             inputs: ["data"],
-            directives: [angular2_1.NgSwitch, angular2_1.NgSwitchWhen, views_1.PieChartComponent, views_1.TableViewComponent],
-            template: "\n        <div class=\"widget-view\" [ng-switch]=\"view.type.id\">\n        \t<table-view *ngSwitchWhen=\"'table'\" [settings]=\"view.settings\" [data]=\"data\">Loading...</table-view>\n        \t<pie-chart *ngSwitchWhen=\"'pie'\" [settings]=\"view.settings\" [data]=\"data\">Loading pie...</pie-chart>\n        </div>\n    "
+            directives: [common_1.CORE_DIRECTIVES, views_1.PieChartComponent, views_1.TableViewComponent],
+            template: "\n        <div class=\"widget-view\" [ngSwitch]=\"view.type.id\">\n        \t<table-view *ngSwitchWhen=\"'table'\" [settings]=\"view.settings\" [data]=\"data\">Loading...</table-view>\n        \t<pie-chart *ngSwitchWhen=\"'pie'\" [settings]=\"view.settings\" [data]=\"data\">Loading pie...</pie-chart>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], WidgetViewComponent);

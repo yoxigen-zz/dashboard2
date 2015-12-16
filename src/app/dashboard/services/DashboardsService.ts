@@ -2,7 +2,7 @@ import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 import {DashboardModel, DashboardModelConfig} from '../models/DashboardModel';
 import {DashboardFactory} from "./DashboardFactory";
-import {Utils} from "../../services/utils";
+import {Utils} from "./utils";
 import {UsersWidget} from "../widgets/UsersWidget";
 import {UserTypesWidget} from "../widgets/UserTypesWidget";
 

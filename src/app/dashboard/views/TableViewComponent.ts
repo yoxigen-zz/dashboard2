@@ -1,13 +1,14 @@
-import {Component, Input, NgSwitch, NgSwitchWhen, Observable} from 'angular2/angular2';
-import {WidgetViewTypeModel} from "../../models/WidgetViewTypeModel";
-import {ViewTypeComponentInterface} from "../../interfaces/ViewTypeComponentInterface";
+import {Component, Input, OnChanges} from 'angular2/core';
+import {CORE_DIRECTIVES} from "angular2/common";
+
+import {WidgetViewTypeModel} from "../models/WidgetViewTypeModel";
+import {ViewTypeComponentInterface} from "../interfaces/ViewTypeComponentInterface";
 import {Response} from "angular2/http";
-import {OnChanges} from "angular2/core";
 
 @Component({
 	selector: "table-view",
 	inputs: ["data"],
-	directives: [NgSwitch, NgSwitchWhen],
+	directives: [CORE_DIRECTIVES],
 	styles: [`
 		.table-view{ width: 100%; border-collapse: collapse; }
 		.table-view th, .table-view td{ padding: .5rem; }
@@ -19,12 +20,12 @@ import {OnChanges} from "angular2/core";
         <table class="table-view">
         	<thead>
         		<tr>
-        			<th *ng-for="#field of settings.fields">{{field.name}}</th>
+        			<th *ngFor="#field of settings.fields">{{field.name}}</th>
         		</tr>
 			</thead>
 			<tbody>
-				<tr *ng-for="#item of data">
-					<td *ng-for="#field of settings.fields">{{item[field.id]}}</td>
+				<tr *ngFor="#item of data">
+					<td *ngFor="#field of settings.fields">{{item[field.id]}}</td>
 				</tr>
 			</tbody>
         </table>

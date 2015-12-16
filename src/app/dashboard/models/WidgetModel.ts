@@ -1,5 +1,5 @@
 import {WidgetViewModel, WidgetViewModelConfig} from './WidgetViewModel';
-import {Utils} from '../../services/utils';
+import {Utils} from '../services/utils';
 import {Observable} from "angular2/core";
 import {Http, Response} from 'angular2/http';
 

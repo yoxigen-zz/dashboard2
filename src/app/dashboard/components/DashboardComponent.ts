@@ -1,7 +1,7 @@
-import {Component, Input, NgFor} from 'angular2/angular2';
+import {Component, Input, OnChanges} from 'angular2/core';
 import {DashboardModel} from '../models/DashboardModel';
 import {WidgetComponent} from './WidgetComponent';
-import {OnChanges} from "angular2/core";
+import {NgFor} from "angular2/common";
 
 @Component({
 	selector: "dashboard",
@@ -13,7 +13,7 @@ import {OnChanges} from "angular2/core";
 				</div>
 				<h1 class="dashboard-title">{{dashboard.title}}</h1>
 			</header>
-			<widget *ng-for="#widget of dashboard.widgets" [widget]="widget"></widget>
+			<widget *ngFor="#widget of dashboard.widgets" [widget]="widget"></widget>
         </div>
     `,
 	directives: [NgFor, WidgetComponent]

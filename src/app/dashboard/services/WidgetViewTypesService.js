@@ -1,5 +1,5 @@
 var WidgetViewTypeModel_1 = require('../models/WidgetViewTypeModel');
-var utils_1 = require('../../services/utils');
+var utils_1 = require('./utils');
 var WidgetViewTypesService;
 (function (WidgetViewTypesService) {
     var types = utils_1.Utils.Objects.toObjectArray([

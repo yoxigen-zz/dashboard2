@@ -1,5 +1,5 @@
 import {WidgetViewTypeModel} from '../models/WidgetViewTypeModel';
-import {Utils} from '../../services/utils';
+import {Utils} from './utils';
 import {Injectable} from "angular2/core";
 
 export module WidgetViewTypesService{

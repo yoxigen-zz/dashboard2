@@ -13,6 +13,8 @@ export {WidgetFactory} from "./services/WidgetFactory";
 export {WidgetsService} from "./services/WidgetsService";
 export {WidgetViewTypesService} from './services/WidgetViewTypesService';
 
+export {WIDGET_PROVIDERS} from "./widgets/widgets";
+
 export const DASHBOARD_PROVIDERS:Provider[] = [
 	new Provider(DashboardFactory, { useClass: DashboardFactory }),
 	new Provider(DashboardsService, { useClass: DashboardsService }),

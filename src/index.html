@@ -5,16 +5,18 @@
 	<link type="text/css" rel="stylesheet" href="../bower_components/c3/c3.min.css" />
 
     <script src="../node_modules/systemjs/dist/system.src.js"></script>
+    <script src="../node_modules/rxjs/bundles/Rx.min.js"></script>
     <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="../node_modules/angular2/bundles/http.dev.js"></script>
     <script src="../node_modules/angular2/bundles/router.dev.js"></script>
+    <script src="../node_modules/angular2/bundles/angular2-polyfills.min.js"></script>
 	<script src="../bower_components/d3/d3.min.js"></script>
 	<script src="../bower_components/c3/c3.min.js"></script>
     <script>
         System.config({
             packages: {'app': {defaultExtension: 'js'}}
         });
-        System.import('app/app');
+        System.import('app/boot');
     </script>
 </head>
 <body>

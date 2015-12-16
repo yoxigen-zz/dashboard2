@@ -13,6 +13,8 @@ var WidgetsService_2 = require("./services/WidgetsService");
 exports.WidgetsService = WidgetsService_2.WidgetsService;
 var WidgetViewTypesService_1 = require('./services/WidgetViewTypesService');
 exports.WidgetViewTypesService = WidgetViewTypesService_1.WidgetViewTypesService;
+var widgets_1 = require("./widgets/widgets");
+exports.WIDGET_PROVIDERS = widgets_1.WIDGET_PROVIDERS;
 exports.DASHBOARD_PROVIDERS = [
     new core_1.Provider(DashboardFactory_1.DashboardFactory, { useClass: DashboardFactory_1.DashboardFactory }),
     new core_1.Provider(DashboardsService_1.DashboardsService, { useClass: DashboardsService_1.DashboardsService }),

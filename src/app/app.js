@@ -1,5 +1,3 @@
-///<reference path="../../node_modules/angular2/http.d.ts"/>
-'use strict';
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,11 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var angular2_1 = require('angular2/angular2');
+var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
-var http_1 = require('angular2/http');
+var common_1 = require("angular2/common");
 var DashboardPageComponent_1 = require("./components/DashboardPageComponent");
-var all_widgets_1 = require("./dashboard/widgets/all_widgets");
 var dashboard_1 = require("./dashboard/dashboard");
 var AppComponent = (function () {
     function AppComponent(dashboardsService) {
@@ -23,10 +20,10 @@ var AppComponent = (function () {
         });
     }
     AppComponent = __decorate([
-        angular2_1.Component({
+        core_1.Component({
             selector: 'my-app',
-            directives: [angular2_1.NgFor, router_1.ROUTER_DIRECTIVES],
-            template: "\n    \t<nav class=\"main-nav\">\n\t\t\t<a *ng-for=\"#dashboard of allDashboards\" [router-link]=\"['DashboardPage',{ dashboardId: dashboard.id }]\">{{dashboard.title}}</a>\n    \t</nav>\n        <router-outlet></router-outlet>\n    "
+            directives: [common_1.NgFor, router_1.ROUTER_DIRECTIVES],
+            template: "\n    \t<nav class=\"main-nav\">\n\t\t\t<a *ngFor=\"#dashboard of allDashboards\" [routerLink]=\"['DashboardPage',{ dashboardId: dashboard.id }]\">{{dashboard.title}}</a>\n    \t</nav>\n        <router-outlet></router-outlet>\n    "
         }),
         router_1.RouteConfig([
             { path: '/', redirectTo: ["DashboardPage", { dashboardId: "main" }] },
@@ -36,11 +33,5 @@ var AppComponent = (function () {
     ], AppComponent);
     return AppComponent;
 })();
-angular2_1.bootstrap(AppComponent, [
-    http_1.HTTP_PROVIDERS,
-    router_1.ROUTER_PROVIDERS,
-    dashboard_1.DASHBOARD_PROVIDERS,
-    all_widgets_1.UsersWidget, all_widgets_1.UserTypesWidget,
-    angular2_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })
-]);
+exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.js.map

@@ -1,8 +1,7 @@
-///<reference path="../../../typings/c3.d.ts" />
+///<reference path="../../typings/c3.d.ts" />
 
-import {Component, ElementRef, Input} from "angular2/core";
-import {ViewTypeComponentInterface} from "../../interfaces/ViewTypeComponentInterface";
-import {OnChanges} from "angular2/core";
+import {Component, ElementRef, Input, OnChanges} from "angular2/core";
+import {ViewTypeComponentInterface} from "../interfaces/ViewTypeComponentInterface";
 
 @Component({
 	selector: "pie-chart",

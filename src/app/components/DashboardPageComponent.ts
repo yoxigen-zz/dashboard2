@@ -11,7 +11,7 @@ import {RouteParams} from "angular2/router";
 	selector: "dashboard-page",
 	directives: [DashboardComponent, NgIf],
 	template: `
-		<dashboard [dashboard]="currentDashboard" *ng-if="currentDashboard"></dashboard>
+		<dashboard [dashboard]="currentDashboard" *ngIf="currentDashboard"></dashboard>
 	`
 })
 export class DashboardPageComponent implements OnChanges{

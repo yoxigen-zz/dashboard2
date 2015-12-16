@@ -1,5 +1,5 @@
 var WidgetViewModel_1 = require('./WidgetViewModel');
-var utils_1 = require('../../services/utils');
+var utils_1 = require('../services/utils');
 var WidgetModel = (function () {
     function WidgetModel(config, http) {
         this.id = config.id;

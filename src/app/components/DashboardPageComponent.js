@@ -35,7 +35,7 @@ var DashboardPageComponent = (function () {
         core_1.Component({
             selector: "dashboard-page",
             directives: [DashboardComponent_1.DashboardComponent, common_1.NgIf],
-            template: "\n\t\t<dashboard [dashboard]=\"currentDashboard\" *ng-if=\"currentDashboard\"></dashboard>\n\t"
+            template: "\n\t\t<dashboard [dashboard]=\"currentDashboard\" *ngIf=\"currentDashboard\"></dashboard>\n\t"
         }), 
         __metadata('design:paramtypes', [DashboardsService_1.DashboardsService, router_1.RouteParams])
     ], DashboardPageComponent);

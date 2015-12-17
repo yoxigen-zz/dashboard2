@@ -10,6 +10,10 @@ var WidgetViewTypesService;
         {
             "id": "pie",
             "name": "Pie Chart"
+        },
+        {
+            "id": "bars",
+            "name": "Bars Chart"
         }
     ], WidgetViewTypeModel_1.WidgetViewTypeModel);
     var typesMap = utils_1.Utils.Arrays.toMap(types, "id");

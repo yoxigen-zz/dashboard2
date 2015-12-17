@@ -11,10 +11,10 @@ var core_1 = require('angular2/core');
 var http_1 = require('angular2/http');
 var DashboardFactory_1 = require("./DashboardFactory");
 var utils_1 = require("./utils");
-var UsersWidget_1 = require("../widgets/UsersWidget");
-var UserTypesWidget_1 = require("../widgets/UserTypesWidget");
 var DashboardsService = (function () {
-    function DashboardsService(http, dashboardFactory, usersWidget, userTypesWidget) {
+    function DashboardsService(http, dashboardFactory) {
+        this.isGettingDashboards = false;
+        this.onDashboards = [];
         this.http = http;
         this.dashboardFactory = dashboardFactory;
     }
@@ -27,13 +27,25 @@ var DashboardsService = (function () {
             if (_this.allDashboards)
                 resolve(_this.allDashboards);
             else {
-                _this.http.get("mock_data/dashboards.json").subscribe(function (res) {
-                    _this.allDashboards = res.json().map(function (dashboardConfig) {
-                        return _this.dashboardFactory.createDashboard(dashboardConfig);
+                if (_this.isGettingDashboards) {
+                    _this.onDashboards.push(function (dashboards) {
+                        resolve(dashboards);
                     });
-                    _this.dashboardsMap = utils_1.Utils.Arrays.toMap(_this.allDashboards);
-                    resolve(_this.allDashboards);
-                });
+                }
+                else {
+                    _this.isGettingDashboards = true;
+                    _this.http.get("mock_data/dashboards.json").subscribe(function (res) {
+                        _this.allDashboards = res.json().map(function (dashboardConfig) {
+                            return _this.dashboardFactory.createDashboard(dashboardConfig);
+                        });
+                        _this.dashboardsMap = utils_1.Utils.Arrays.toMap(_this.allDashboards);
+                        resolve(_this.allDashboards);
+                        _this.isGettingDashboards = false;
+                        _this.onDashboards.forEach(function (onDashboards) {
+                            onDashboards(_this.allDashboards);
+                        });
+                    });
+                }
             }
         });
         return deferred;
@@ -46,7 +58,7 @@ var DashboardsService = (function () {
     };
     DashboardsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, DashboardFactory_1.DashboardFactory, UsersWidget_1.UsersWidget, UserTypesWidget_1.UserTypesWidget])
+        __metadata('design:paramtypes', [http_1.Http, DashboardFactory_1.DashboardFactory])
     ], DashboardsService);
     return DashboardsService;
 })();

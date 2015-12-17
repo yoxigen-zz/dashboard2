@@ -8,7 +8,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var common_1 = require("angular2/common");
 var TableViewComponent = (function () {
     function TableViewComponent() {
     }
@@ -24,7 +23,6 @@ var TableViewComponent = (function () {
         core_1.Component({
             selector: "table-view",
             inputs: ["data"],
-            directives: [common_1.CORE_DIRECTIVES],
             styles: ["\n\t\t.table-view{ width: 100%; border-collapse: collapse; }\n\t\t.table-view th, .table-view td{ padding: .5rem; }\n\t\t.table-view th{ font-weight: strong; text-align: left; }\n\t\t.table-view tbody tr{ border-top: solid 1px rgba(0,0,0,.06); }\n\t\t.table-view td{ color: rgba(0,0,0,.87) }\n\t"],
             template: "\n        <table class=\"table-view\">\n        \t<thead>\n        \t\t<tr>\n        \t\t\t<th *ngFor=\"#field of settings.fields\">{{field.name}}</th>\n        \t\t</tr>\n\t\t\t</thead>\n\t\t\t<tbody>\n\t\t\t\t<tr *ngFor=\"#item of data\">\n\t\t\t\t\t<td *ngFor=\"#field of settings.fields\">{{item[field.id]}}</td>\n\t\t\t\t</tr>\n\t\t\t</tbody>\n        </table>\n    "
         }), 

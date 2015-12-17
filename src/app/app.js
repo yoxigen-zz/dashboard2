@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
-var common_1 = require("angular2/common");
 var DashboardPageComponent_1 = require("./components/DashboardPageComponent");
 var dashboard_1 = require("./dashboard/dashboard");
 var AppComponent = (function () {
@@ -22,7 +21,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            directives: [common_1.NgFor, router_1.ROUTER_DIRECTIVES],
+            directives: [router_1.ROUTER_DIRECTIVES],
             template: "\n    \t<nav class=\"main-nav\">\n\t\t\t<a *ngFor=\"#dashboard of allDashboards\" [routerLink]=\"['DashboardPage',{ dashboardId: dashboard.id }]\">{{dashboard.title}}</a>\n    \t</nav>\n        <router-outlet></router-outlet>\n    "
         }),
         router_1.RouteConfig([

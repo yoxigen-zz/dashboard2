@@ -18,6 +18,13 @@ var WidgetModel = (function () {
             return;
         this.http.get("mock_data/data/" + this.dataSource).subscribe(function (res) {
             _this.data = Object.freeze(res.json());
+            _this.error = null;
+        }, function (error) {
+            _this.data = null;
+            _this.error = {
+                text: error.text(),
+                status: error.status
+            };
         });
         this.lastUpdateTime = new Date;
     };

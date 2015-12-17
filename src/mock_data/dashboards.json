@@ -6,5 +6,12 @@
 	  { "id": "users" },
 	  { "id": "userTypes" }
 	]
+  },
+  {
+	"id": "health",
+	"title": "Health",
+	"widgets": [
+  		{ "id": "userHealthBars"}
+	]
   }
 ]

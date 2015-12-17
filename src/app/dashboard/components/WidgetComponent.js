@@ -8,7 +8,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var common_1 = require("angular2/common");
 var WidgetModel_1 = require('../models/WidgetModel');
 var WidgetViewComponent_1 = require("./WidgetViewComponent");
 var WidgetComponent = (function () {
@@ -21,8 +20,8 @@ var WidgetComponent = (function () {
     WidgetComponent = __decorate([
         core_1.Component({
             selector: "widget",
-            directives: [common_1.NgFor, WidgetViewComponent_1.WidgetViewComponent],
-            template: "\n        <div class=\"widget\">\n        \t<div class=\"widget-contents\">\n        \t\t<header class=\"widget-contents-header\">\n\t\t\t\t\t<h2>{{widget.title}}</h2>\n\t\t\t\t\t<small>Last updated: {{widget.lastUpdateTime | date:'medium'}}</small>\n        \t\t</header>\n        \t\t<div class=\"widget-contents-body\">\n        \t\t\t<widget-view *ngFor=\"#view of widget.views\" [view]=\"view\" [data]=\"widget.data\"></widget-view>\n        \t\t</div>\n\t\t\t</div>\n        </div>\n    "
+            directives: [WidgetViewComponent_1.WidgetViewComponent],
+            template: "\n        <div class=\"widget\">\n        \t<div class=\"widget-contents\">\n        \t\t<header class=\"widget-contents-header\">\n\t\t\t\t\t<h2>{{widget.title}}</h2>\n\t\t\t\t\t<small>Last updated: {{widget.lastUpdateTime | date:'medium'}}</small>\n        \t\t</header>\n        \t\t<div class=\"widget-contents-body\" *ngIf=\"!widget.error\">\n        \t\t\t<widget-view *ngFor=\"#view of widget.views\" [view]=\"view\" [data]=\"widget.data\"></widget-view>\n        \t\t</div>\n        \t\t<div class=\"widget-error\" *ngIf=\"widget.error\">\n        \t\t\t<div class=\"widget-error-message\">\n        \t\t\t\t{{widget.error.text}}\n        \t\t\t\t<div class=\"widget-error-message-status\">\n        \t\t\t\t\t<label>Status</label>: {{widget.error.status}}\n        \t\t\t\t</div>\n        \t\t\t</div>\n        \t\t</div>\n\t\t\t</div>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], WidgetComponent);

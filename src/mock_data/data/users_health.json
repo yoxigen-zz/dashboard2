@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Yossi",
+		"health": 7
+	},
+	{
+		"name": "Efrat",
+		"health": 5
+	},
+	{
+		"name": "Lynn",
+		"health": 8
+	},
+	{
+		"name": "Daiana",
+		"health": 3
+	},
+	{
+		"name": "Mom",
+		"health": 2
+	},
+	{
+		"name": "Dad",
+		"health": 7
+	}
+]

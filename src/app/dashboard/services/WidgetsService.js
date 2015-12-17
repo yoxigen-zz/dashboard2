@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("angular2/core");
 var WidgetFactory_1 = require("./WidgetFactory");
+var http_1 = require("angular2/http");
 var WidgetsService = (function () {
-    function WidgetsService(widgetFactory) {
+    function WidgetsService(widgetFactory, http) {
         this.widgets = new Map();
         this.widgetFactory = widgetFactory;
+        this.http = http;
     }
     WidgetsService.prototype.registerWidget = function (widgetConfig) {
         var model = this.widgetFactory.createWidget(widgetConfig);
@@ -22,11 +24,21 @@ var WidgetsService = (function () {
         return model;
     };
     WidgetsService.prototype.getWidgetById = function (widgetId) {
-        return this.widgets.get(widgetId);
+        var _this = this;
+        var widget = this.widgets.get(widgetId);
+        if (widget)
+            return Promise.resolve(widget);
+        var deferred = new Promise(function (resolve, reject) {
+            _this.http.get("mock_data/widgets/" + widgetId + ".json").subscribe(function (res) {
+                var widgetConfig = res.json();
+                resolve(_this.registerWidget(widgetConfig));
+            });
+        });
+        return deferred;
     };
     WidgetsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [WidgetFactory_1.WidgetFactory])
+        __metadata('design:paramtypes', [WidgetFactory_1.WidgetFactory, http_1.Http])
     ], WidgetsService);
     return WidgetsService;
 })();

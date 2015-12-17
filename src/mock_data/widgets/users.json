@@ -1,0 +1,26 @@
+{
+  "id": "users",
+  "title": "Users",
+  "dataSource": "users.json",
+  "views": [
+	{
+	  "type": "table",
+	  "settings": {
+		"fields": [
+		  {
+			"id": "id",
+			"name": "ID"
+		  },
+		  {
+			"id": "name",
+			"name": "Name"
+		  },
+		  {
+			"id": "age",
+			"name": "Age"
+		  }
+		]
+	  }
+	}
+  ]
+}

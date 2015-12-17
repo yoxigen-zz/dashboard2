@@ -3,17 +3,18 @@ import {Http, Response} from 'angular2/http';
 import {DashboardModel, DashboardModelConfig} from '../models/DashboardModel';
 import {DashboardFactory} from "./DashboardFactory";
 import {Utils} from "./utils";
-import {UsersWidget} from "../widgets/UsersWidget";
-import {UserTypesWidget} from "../widgets/UserTypesWidget";
 
 @Injectable()
 export class DashboardsService{
-    http:Http;
-    allDashboards:DashboardModel[];
-	dashboardFactory:DashboardFactory;
-	dashboardsMap:Map<string, DashboardModel>;
+    private http:Http;
+	private dashboardFactory:DashboardFactory;
+	private dashboardsMap:Map<string, DashboardModel>;
+	private isGettingDashboards:boolean = false;
+	private onDashboards:Array<(dashboards:DashboardModel[]) => void> = [];
 
-    constructor(http:Http, dashboardFactory:DashboardFactory, usersWidget:UsersWidget, userTypesWidget:UserTypesWidget){
+	allDashboards:DashboardModel[];
+
+	constructor(http:Http, dashboardFactory:DashboardFactory){
         this.http = http;
 		this.dashboardFactory = dashboardFactory;
     }
@@ -23,18 +24,31 @@ export class DashboardsService{
 	 */
     public getDashboards():Promise<DashboardModel[]>{
 		var deferred:Promise<DashboardModel[]> = new Promise((resolve, reject) => {
-			if (this.allDashboards)
+			if (this.allDashboards) // TODO: If currently fetching, add a function to resolve here
 				resolve(this.allDashboards);
 			else {
-				this.http.get("mock_data/dashboards.json").subscribe((res:Response) => {
-					this.allDashboards = (<{}[]>res.json()).map((dashboardConfig:DashboardModelConfig) => {
-						return this.dashboardFactory.createDashboard(dashboardConfig);
+				if (this.isGettingDashboards){
+					this.onDashboards.push((dashboards:DashboardModel[]):void => {
+						resolve(dashboards);
 					});
+				}
+				else {
+					this.isGettingDashboards = true;
 
-					this.dashboardsMap = Utils.Arrays.toMap(this.allDashboards);
+					this.http.get("mock_data/dashboards.json").subscribe((res:Response) => {
+						this.allDashboards = (<{}[]>res.json()).map((dashboardConfig:DashboardModelConfig) => {
+							return this.dashboardFactory.createDashboard(dashboardConfig);
+						});
 
-					resolve(this.allDashboards);
-				});
+						this.dashboardsMap = Utils.Arrays.toMap(this.allDashboards);
+
+						resolve(this.allDashboards);
+						this.isGettingDashboards = false;
+						this.onDashboards.forEach((onDashboards:(dashboards:DashboardModel[]) => void) => {
+							onDashboards(this.allDashboards);
+						});
+					});
+				}
 			}
 		});
 

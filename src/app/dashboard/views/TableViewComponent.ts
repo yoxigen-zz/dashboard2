@@ -1,6 +1,4 @@
 import {Component, Input, OnChanges} from 'angular2/core';
-import {CORE_DIRECTIVES} from "angular2/common";
-
 import {WidgetViewTypeModel} from "../models/WidgetViewTypeModel";
 import {ViewTypeComponentInterface} from "../interfaces/ViewTypeComponentInterface";
 import {Response} from "angular2/http";
@@ -8,7 +6,6 @@ import {Response} from "angular2/http";
 @Component({
 	selector: "table-view",
 	inputs: ["data"],
-	directives: [CORE_DIRECTIVES],
 	styles: [`
 		.table-view{ width: 100%; border-collapse: collapse; }
 		.table-view th, .table-view td{ padding: .5rem; }

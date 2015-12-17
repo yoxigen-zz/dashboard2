@@ -2,14 +2,18 @@ import {WidgetModel} from "../models/WidgetModel";
 import {Injectable} from "angular2/core";
 import {WidgetModelConfig} from "../models/WidgetModel";
 import {WidgetFactory} from "./WidgetFactory";
+import {Http} from "angular2/http";
+import {Response} from "angular2/http";
 
 @Injectable()
 export class WidgetsService{
 	widgets:Map<string, WidgetModel> = new Map<string, WidgetModel>();
 	widgetFactory:WidgetFactory;
+	http:Http;
 
-	constructor(widgetFactory:WidgetFactory){
+	constructor(widgetFactory:WidgetFactory, http:Http){
 		this.widgetFactory = widgetFactory;
+		this.http = http;
 	}
 
 	public registerWidget(widgetConfig:WidgetModelConfig):WidgetModel{
@@ -23,7 +27,18 @@ export class WidgetsService{
 		return model;
 	}
 
-	public getWidgetById(widgetId:string):WidgetModel{
-		return this.widgets.get(widgetId);
+	public getWidgetById(widgetId:string):Promise<WidgetModel>{
+		var widget = this.widgets.get(widgetId);
+		if (widget)
+			return Promise.resolve(widget);
+
+		var deferred:Promise<WidgetModel> = new Promise((resolve, reject) => {
+			this.http.get("mock_data/widgets/" + widgetId + ".json").subscribe((res:Response) => {
+				var widgetConfig:WidgetModelConfig = <WidgetModelConfig>res.json();
+				resolve(this.registerWidget(widgetConfig));
+			});
+		});
+
+		return deferred;
 	}
 }

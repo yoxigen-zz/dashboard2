@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var WidgetViewTypeModel_1 = require("../models/WidgetViewTypeModel");
 var views_1 = require("../views/views");
-var common_1 = require("angular2/common");
 var WidgetViewComponent = (function () {
     function WidgetViewComponent() {
     }
@@ -26,8 +25,8 @@ var WidgetViewComponent = (function () {
         core_1.Component({
             selector: "widget-view",
             inputs: ["data"],
-            directives: [common_1.CORE_DIRECTIVES, views_1.PieChartComponent, views_1.TableViewComponent],
-            template: "\n        <div class=\"widget-view\" [ngSwitch]=\"view.type.id\">\n        \t<table-view *ngSwitchWhen=\"'table'\" [settings]=\"view.settings\" [data]=\"data\">Loading...</table-view>\n        \t<pie-chart *ngSwitchWhen=\"'pie'\" [settings]=\"view.settings\" [data]=\"data\">Loading pie...</pie-chart>\n        </div>\n    "
+            directives: views_1.WIDGET_VIEW_DIRECTIVES,
+            template: "\n        <div class=\"widget-view\" [ngSwitch]=\"view.type.id\">\n        \t<table-view *ngSwitchWhen=\"'table'\" [settings]=\"view.settings\" [data]=\"data\">Loading...</table-view>\n        \t<pie-chart *ngSwitchWhen=\"'pie'\" [settings]=\"view.settings\" [data]=\"data\">Loading...</pie-chart>\n        \t<bars-chart *ngSwitchWhen=\"'bars'\" [settings]=\"view.settings\" [data]=\"data\">Loading...</bars-chart>\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], WidgetViewComponent);

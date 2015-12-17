@@ -1,16 +1,16 @@
 import {Component, Input} from 'angular2/core';
 import {WidgetViewTypeModel} from "../models/WidgetViewTypeModel";
-import {PieChartComponent, TableViewComponent} from "../views/views";
-import {CORE_DIRECTIVES} from "angular2/common";
+import {WIDGET_VIEW_DIRECTIVES} from "../views/views";
 
 @Component({
 	selector: "widget-view",
 	inputs: ["data"],
-	directives: [CORE_DIRECTIVES, PieChartComponent, TableViewComponent],
+	directives: WIDGET_VIEW_DIRECTIVES,
 	template: `
         <div class="widget-view" [ngSwitch]="view.type.id">
         	<table-view *ngSwitchWhen="'table'" [settings]="view.settings" [data]="data">Loading...</table-view>
-        	<pie-chart *ngSwitchWhen="'pie'" [settings]="view.settings" [data]="data">Loading pie...</pie-chart>
+        	<pie-chart *ngSwitchWhen="'pie'" [settings]="view.settings" [data]="data">Loading...</pie-chart>
+        	<bars-chart *ngSwitchWhen="'bars'" [settings]="view.settings" [data]="data">Loading...</bars-chart>
         </div>
     `
 })

@@ -1,0 +1,14 @@
+{
+  "id": "userTypes",
+  "title": "User Types",
+  "dataSource": "user_types.json",
+  "views": [
+	{
+	  "type": "pie",
+	  "settings": {
+		"nameField": "name",
+		"valueField": "value"
+	  }
+	}
+  ]
+}

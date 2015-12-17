@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var DashboardModel_1 = require('../models/DashboardModel');
 var WidgetComponent_1 = require('./WidgetComponent');
-var common_1 = require("angular2/common");
 var DashboardComponent = (function () {
     function DashboardComponent() {
     }
@@ -27,7 +26,7 @@ var DashboardComponent = (function () {
         core_1.Component({
             selector: "dashboard",
             template: "\n    \t<div class=\"dashboard\">\n\t\t\t<header class=\"dashboard-header\">\n\t\t\t\t<div class=\"pull-right\">\n\t\t\t\t\t<button (click)=\"dashboard.refresh()\" [disabled]=\"dashboard.disabled\">Refresh</button>\n\t\t\t\t</div>\n\t\t\t\t<h1 class=\"dashboard-title\">{{dashboard.title}}</h1>\n\t\t\t</header>\n\t\t\t<widget *ngFor=\"#widget of dashboard.widgets\" [widget]=\"widget\"></widget>\n        </div>\n    ",
-            directives: [common_1.NgFor, WidgetComponent_1.WidgetComponent]
+            directives: [WidgetComponent_1.WidgetComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], DashboardComponent);

@@ -1,6 +1,5 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {NgFor} from "angular2/common";
 
 import {DashboardModel} from './dashboard/models/DashboardModel';
 import {DashboardPageComponent} from "./components/DashboardPageComponent";
@@ -8,7 +7,7 @@ import {DashboardsService} from "./dashboard/dashboard";
 
 @Component({
     selector: 'my-app',
-    directives: [NgFor, ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES],
     template: `
     	<nav class="main-nav">
 			<a *ngFor="#dashboard of allDashboards" [routerLink]="['DashboardPage',{ dashboardId: dashboard.id }]">{{dashboard.title}}</a>

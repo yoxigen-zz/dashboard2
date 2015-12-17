@@ -1,17 +1,17 @@
 import {WidgetViewModel, WidgetViewModelConfig} from './WidgetViewModel';
 import {Utils} from '../services/utils';
-import {Observable} from "angular2/core";
 import {Http, Response} from 'angular2/http';
 
 export class WidgetModel{
-    public id:string;
-    public title:string;
-    public lastUpdateTime:Date;
-	public dataSource:string;
-	public views:WidgetViewModel[];
-	public data:any;
+    id:string;
+    title:string;
+    lastUpdateTime:Date;
+	dataSource:string;
+	views:WidgetViewModel[];
+	data:any;
+	error:Error;
 
-	http:Http;
+	private http:Http;
 
     constructor(config:WidgetModelConfig, http:Http){
         this.id = config.id;
@@ -32,6 +32,13 @@ export class WidgetModel{
 
 		this.http.get("mock_data/data/" + this.dataSource).subscribe((res:Response) => {
 			this.data = Object.freeze((<{}[]>res.json()));
+			this.error = null;
+		}, (error:Response) => {
+			this.data = null;
+			this.error = {
+				text: error.text(),
+				status: error.status
+			}
 		});
 
         this.lastUpdateTime = new Date;
@@ -47,4 +54,9 @@ export interface WidgetModelConfig{
 
 export interface DashboardWidgetConfig{
 	id:string
+}
+
+export interface Error{
+	text: string,
+	status?: number
 }

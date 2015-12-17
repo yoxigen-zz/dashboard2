@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("angular2/core");
 var DashboardsService_1 = require("../dashboard/services/DashboardsService");
 var DashboardComponent_1 = require("../dashboard/components/DashboardComponent");
-var common_1 = require("angular2/common");
 var router_1 = require("angular2/router");
 'use strict';
 var DashboardPageComponent = (function () {
@@ -34,7 +33,7 @@ var DashboardPageComponent = (function () {
     DashboardPageComponent = __decorate([
         core_1.Component({
             selector: "dashboard-page",
-            directives: [DashboardComponent_1.DashboardComponent, common_1.NgIf],
+            directives: [DashboardComponent_1.DashboardComponent],
             template: "\n\t\t<dashboard [dashboard]=\"currentDashboard\" *ngIf=\"currentDashboard\"></dashboard>\n\t"
         }), 
         __metadata('design:paramtypes', [DashboardsService_1.DashboardsService, router_1.RouteParams])

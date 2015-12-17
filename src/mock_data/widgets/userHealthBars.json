@@ -1,0 +1,14 @@
+{
+	"id": "userHealthBars",
+	"title": "User's Health",
+	"dataSource": "users_health.json",
+	"views": [
+		{
+			"type": "bars",
+			"settings": {
+				"valueProperty": "health",
+				"colorPattern": ["Red", "Green", "Blue"]
+			}
+		}
+	]
+}

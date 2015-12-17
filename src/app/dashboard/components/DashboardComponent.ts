@@ -1,7 +1,6 @@
 import {Component, Input, OnChanges} from 'angular2/core';
 import {DashboardModel} from '../models/DashboardModel';
 import {WidgetComponent} from './WidgetComponent';
-import {NgFor} from "angular2/common";
 
 @Component({
 	selector: "dashboard",
@@ -16,7 +15,7 @@ import {NgFor} from "angular2/common";
 			<widget *ngFor="#widget of dashboard.widgets" [widget]="widget"></widget>
         </div>
     `,
-	directives: [NgFor, WidgetComponent]
+	directives: [WidgetComponent]
 })
 export class DashboardComponent implements OnChanges{
 	@Input() dashboard:DashboardModel;

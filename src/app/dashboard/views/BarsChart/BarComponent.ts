@@ -4,8 +4,9 @@ import {BarsChartItem} from "./BarItemModel";
 @Component({
 	selector: "bar",
 	template: `
+		<label>{{data.name}}</label>
 		<div [ngStyle]="{ width: width + '%', 'background-color': data.color }" class="bars-chart-bar">
-			<span class="bars-chart-value">{{data.name}}</span>
+			<span class="bars-chart-value">{{data.valueDisplay}}</span>
 		</div>
 	`
 })
@@ -16,5 +17,9 @@ export class BarComponent implements OnChanges{
 
 	ngOnChanges(changes:Object){
 		this.width = 100 * this.data.size;
+	}
+
+	setBarValuePosition(){
+
 	}
 }

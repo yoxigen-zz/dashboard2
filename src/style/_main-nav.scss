@@ -8,5 +8,10 @@
 	text-decoration: none;
 	display: inline-block;
 	padding: .5rem 1rem;
+
+	  &.router-link-active{
+		  background: $secondary-color;
+		  cursor: default;
+	  }
   }
 }

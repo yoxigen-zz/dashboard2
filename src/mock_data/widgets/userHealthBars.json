@@ -6,8 +6,7 @@
 		{
 			"type": "bars",
 			"settings": {
-				"valueProperty": "health",
-				"colorPattern": ["Red", "Green", "Blue"]
+				"valueProperty": "health"
 			}
 		}
 	]

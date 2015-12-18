@@ -11,8 +11,12 @@ export class BarsChartService{
 
 	parseOptions(options?:BarsChartOptions){
 		let parsedOptions = Object.assign({}, this.DEFAULT_SETTINGS, options);
-		parsedOptions.getValue = this.prepareGetItemValue(parsedOptions);
-		parsedOptions.getColor = this.prepareGetItemColor(parsedOptions);
+
+		Object.assign(parsedOptions, {
+			getValue: this.prepareGetItemValue(parsedOptions),
+			getColor: this.prepareGetItemColor(parsedOptions),
+			formatValue: this.prepareGetValueDisplay(parsedOptions)
+		});
 
 		return parsedOptions;
 	}
@@ -35,8 +39,9 @@ export class BarsChartService{
 
 		parsedData = parsedData.map((item, i:number) => {
 			return Object.freeze(Object.assign(item, {
-				color: options.getColor(item, 0, i),
-				size: item.value / sizeDelta
+				color: options.getColor && options.getColor(item, 0, i),
+				size: item.value / sizeDelta,
+				valueDisplay: options.formatValue(item.value, item)
 			}));
 		});
 
@@ -75,5 +80,12 @@ export class BarsChartService{
 			return (item:any, itemSize:number, index:number) => { return options.color };
 
 		return null;
+	}
+
+	private prepareGetValueDisplay(options:BarsChartOptions): (value:any, item:any) => string{
+		if (options.formatValue)
+			return options.formatValue;
+
+		return (value, item) => { return item.value.toString() };
 	}
 }

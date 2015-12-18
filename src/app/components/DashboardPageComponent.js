@@ -27,9 +27,6 @@ var DashboardPageComponent = (function () {
     DashboardPageComponent.prototype.setDashboard = function (dashboard) {
         this.currentDashboard = dashboard;
     };
-    DashboardPageComponent.prototype.ngOnChanges = function (changes) {
-        console.log("changes: ", changes);
-    };
     DashboardPageComponent = __decorate([
         core_1.Component({
             selector: "dashboard-page",

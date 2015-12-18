@@ -13,7 +13,7 @@ import {RouteParams} from "angular2/router";
 		<dashboard [dashboard]="currentDashboard" *ngIf="currentDashboard"></dashboard>
 	`
 })
-export class DashboardPageComponent implements OnChanges{
+export class DashboardPageComponent{
 	currentDashboard:DashboardModel;
 	allDashboards:DashboardModel[];
 	dashboardId:string;
@@ -35,7 +35,4 @@ export class DashboardPageComponent implements OnChanges{
 		this.currentDashboard = dashboard;
 	}
 
-	ngOnChanges(changes){
-		console.log("changes: ", changes);
-	}
 }

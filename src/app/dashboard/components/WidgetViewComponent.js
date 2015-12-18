@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var WidgetViewTypeModel_1 = require("../models/WidgetViewTypeModel");
 var views_1 = require("../views/views");
+var Rx_1 = require('rxjs/Rx');
 var WidgetViewComponent = (function () {
     function WidgetViewComponent() {
     }
@@ -21,6 +22,10 @@ var WidgetViewComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], WidgetViewComponent.prototype, "data", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Rx_1.Observable)
+    ], WidgetViewComponent.prototype, "data$", void 0);
     WidgetViewComponent = __decorate([
         core_1.Component({
             selector: "widget-view",

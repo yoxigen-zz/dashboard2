@@ -1,6 +1,7 @@
 import {Component, Input} from 'angular2/core';
 import {WidgetViewTypeModel} from "../models/WidgetViewTypeModel";
 import {WIDGET_VIEW_DIRECTIVES} from "../views/views";
+import { Observable } from 'rxjs/Rx';
 
 @Component({
 	selector: "widget-view",
@@ -17,4 +18,5 @@ import {WIDGET_VIEW_DIRECTIVES} from "../views/views";
 export class WidgetViewComponent{
 	@Input() view:WidgetViewTypeModel;
 	@Input() data:any;
+	@Input() data$:Observable<any>;
 }

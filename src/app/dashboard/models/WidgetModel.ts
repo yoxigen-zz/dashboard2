@@ -1,6 +1,7 @@
 import {WidgetViewModel, WidgetViewModelConfig} from './WidgetViewModel';
 import {Utils} from '../services/utils';
 import {Http, Response} from 'angular2/http';
+import { Observable, Subscriber } from 'rxjs/Rx';
 
 export class WidgetModel{
     id:string;
@@ -9,6 +10,8 @@ export class WidgetModel{
 	dataSource:string;
 	views:WidgetViewModel[];
 	data:any;
+	data$:Observable<any>;
+	private _dataObserver:Subscriber<any>;
 	error:Error;
 
 	private http:Http;
@@ -18,6 +21,8 @@ export class WidgetModel{
         this.title = config.title;
 		this.dataSource = config.dataSource;
 		this.http = http;
+
+		this.data$ = new Observable(observer => this._dataObserver = observer).share();
 
 		if (config.views)
 			this.views = Utils.Objects.toObjectArray(config.views, WidgetViewModel);
@@ -32,11 +37,12 @@ export class WidgetModel{
 
 		this.http.get("mock_data/data/" + this.dataSource).subscribe((res:Response) => {
 			this.data = Object.freeze((<{}[]>res.json()));
+			this._dataObserver && this._dataObserver.next(this.data);
 			this.error = null;
 		}, (error:Response) => {
 			this.data = null;
 			this.error = {
-				text: error.text(),
+				text: error.text ? error.text() : error.toString(),
 				status: error.status
 			}
 		});

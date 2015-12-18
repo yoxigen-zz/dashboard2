@@ -13,7 +13,7 @@ import {WidgetViewComponent} from "./WidgetViewComponent";
 					<small>Last updated: {{widget.lastUpdateTime | date:'medium'}}</small>
         		</header>
         		<div class="widget-contents-body" *ngIf="!widget.error">
-        			<widget-view *ngFor="#view of widget.views" [view]="view" [data]="widget.data"></widget-view>
+        			<widget-view *ngFor="#view of widget.views" [view]="view" [data]="widget.data" [data$]="widget.data$"></widget-view>
         		</div>
         		<div class="widget-error" *ngIf="widget.error">
         			<div class="widget-error-message">

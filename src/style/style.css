@@ -18,7 +18,276 @@ h1, h2, h3, h4, h5, h6 {
 .pull-left {
   float: left; }
 
-/* $secondary-color: #F6FF00; */
+.dashboard-color-error {
+  color: #cc3a3a; }
+
+.dashboard-background-color-error {
+  background-color: #cc3a3a;
+  color: White; }
+  .dashboard-background-color-error.btn:hover, .dashboard-background-color-error.btn:focus, .dashboard-background-color-error.object-link:hover, .dashboard-background-color-error.object-link:focus {
+    background-color: #a82b2b;
+    color: White; }
+
+.dashboard-color-warning {
+  color: #ffd144; }
+
+.dashboard-background-color-warning {
+  background-color: #ffd144;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-warning.btn:hover, .dashboard-background-color-warning.btn:focus, .dashboard-background-color-warning.object-link:hover, .dashboard-background-color-warning.object-link:focus {
+    background-color: #ffc411;
+    color: White; }
+
+.dashboard-color-primary {
+  color: #0097c8; }
+
+.dashboard-background-color-primary {
+  background-color: #0097c8;
+  color: White; }
+  .dashboard-background-color-primary.btn:hover, .dashboard-background-color-primary.btn:focus, .dashboard-background-color-primary.object-link:hover, .dashboard-background-color-primary.object-link:focus {
+    background-color: #007095;
+    color: White; }
+
+.dashboard-color-primary-hover {
+  color: rgba(233, 242, 247, 0.36); }
+
+.dashboard-background-color-primary-hover {
+  background-color: rgba(233, 242, 247, 0.36);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-primary-hover.btn:hover, .dashboard-background-color-primary-hover.btn:focus, .dashboard-background-color-primary-hover.object-link:hover, .dashboard-background-color-primary-hover.object-link:focus {
+    background-color: rgba(196, 220, 233, 0.36);
+    color: White; }
+
+.dashboard-color-primary-light {
+  color: #38c7d4; }
+
+.dashboard-background-color-primary-light {
+  background-color: #38c7d4;
+  color: White; }
+  .dashboard-background-color-primary-light.btn:hover, .dashboard-background-color-primary-light.btn:focus, .dashboard-background-color-primary-light.object-link:hover, .dashboard-background-color-primary-light.object-link:focus {
+    background-color: #27a7b2;
+    color: White; }
+
+.dashboard-color-primary-dark-background {
+  color: #6ADBFF; }
+
+.dashboard-background-color-primary-dark-background {
+  background-color: #6ADBFF;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-primary-dark-background.btn:hover, .dashboard-background-color-primary-dark-background.btn:focus, .dashboard-background-color-primary-dark-background.object-link:hover, .dashboard-background-color-primary-dark-background.object-link:focus {
+    background-color: #37cfff;
+    color: White; }
+
+.dashboard-color-primary-dark {
+  color: #2F539C; }
+
+.dashboard-background-color-primary-dark {
+  background-color: #2F539C;
+  color: White; }
+  .dashboard-background-color-primary-dark.btn:hover, .dashboard-background-color-primary-dark.btn:focus, .dashboard-background-color-primary-dark.object-link:hover, .dashboard-background-color-primary-dark.object-link:focus {
+    background-color: #233e75;
+    color: White; }
+
+.dashboard-color-primary-100 {
+  color: #e9f2f7; }
+
+.dashboard-background-color-primary-100 {
+  background-color: #e9f2f7;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-primary-100.btn:hover, .dashboard-background-color-primary-100.btn:focus, .dashboard-background-color-primary-100.object-link:hover, .dashboard-background-color-primary-100.object-link:focus {
+    background-color: #c4dce9;
+    color: White; }
+
+.dashboard-color-primary-500 {
+  color: #0072bc; }
+
+.dashboard-background-color-primary-500 {
+  background-color: #0072bc;
+  color: White; }
+  .dashboard-background-color-primary-500.btn:hover, .dashboard-background-color-primary-500.btn:focus, .dashboard-background-color-primary-500.object-link:hover, .dashboard-background-color-primary-500.object-link:focus {
+    background-color: #005389;
+    color: White; }
+
+.dashboard-color-primary-400 {
+  color: #068db9; }
+
+.dashboard-background-color-primary-400 {
+  background-color: #068db9;
+  color: White; }
+  .dashboard-background-color-primary-400.btn:hover, .dashboard-background-color-primary-400.btn:focus, .dashboard-background-color-primary-400.object-link:hover, .dashboard-background-color-primary-400.object-link:focus {
+    background-color: #046788;
+    color: White; }
+
+.dashboard-color-primary-200 {
+  color: #DFE4E8; }
+
+.dashboard-background-color-primary-200 {
+  background-color: #DFE4E8;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-primary-200.btn:hover, .dashboard-background-color-primary-200.btn:focus, .dashboard-background-color-primary-200.object-link:hover, .dashboard-background-color-primary-200.object-link:focus {
+    background-color: #c1cbd3;
+    color: White; }
+
+.dashboard-color-secondary {
+  color: #FF1753; }
+
+.dashboard-background-color-secondary {
+  background-color: #FF1753;
+  color: White; }
+  .dashboard-background-color-secondary.btn:hover, .dashboard-background-color-secondary.btn:focus, .dashboard-background-color-secondary.object-link:hover, .dashboard-background-color-secondary.object-link:focus {
+    background-color: #e3003b;
+    color: White; }
+
+.dashboard-color-gray-100 {
+  color: #f5f5f5; }
+
+.dashboard-background-color-gray-100 {
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-gray-100.btn:hover, .dashboard-background-color-gray-100.btn:focus, .dashboard-background-color-gray-100.object-link:hover, .dashboard-background-color-gray-100.object-link:focus {
+    background-color: gainsboro;
+    color: White; }
+
+.dashboard-color-gray-200 {
+  color: #dcdcdc; }
+
+.dashboard-background-color-gray-200 {
+  background-color: #dcdcdc;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-gray-200.btn:hover, .dashboard-background-color-gray-200.btn:focus, .dashboard-background-color-gray-200.object-link:hover, .dashboard-background-color-gray-200.object-link:focus {
+    background-color: #c3c3c3;
+    color: White; }
+
+.dashboard-color-gray-500 {
+  color: #9E9E9E; }
+
+.dashboard-background-color-gray-500 {
+  background-color: #9E9E9E;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-gray-500.btn:hover, .dashboard-background-color-gray-500.btn:focus, .dashboard-background-color-gray-500.object-link:hover, .dashboard-background-color-gray-500.object-link:focus {
+    background-color: #858585;
+    color: White; }
+
+.dashboard-color-gray-700 {
+  color: #616161; }
+
+.dashboard-background-color-gray-700 {
+  background-color: #616161;
+  color: White; }
+  .dashboard-background-color-gray-700.btn:hover, .dashboard-background-color-gray-700.btn:focus, .dashboard-background-color-gray-700.object-link:hover, .dashboard-background-color-gray-700.object-link:focus {
+    background-color: #484848;
+    color: White; }
+
+.dashboard-color-gray-900 {
+  color: #333333; }
+
+.dashboard-background-color-gray-900 {
+  background-color: #333333;
+  color: White; }
+  .dashboard-background-color-gray-900.btn:hover, .dashboard-background-color-gray-900.btn:focus, .dashboard-background-color-gray-900.object-link:hover, .dashboard-background-color-gray-900.object-link:focus {
+    background-color: #1a1a1a;
+    color: White; }
+
+.dashboard-color-light-very-low-opacity {
+  color: rgba(255, 255, 255, 0.12); }
+
+.dashboard-background-color-light-very-low-opacity {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-very-low-opacity.btn:hover, .dashboard-background-color-light-very-low-opacity.btn:focus, .dashboard-background-color-light-very-low-opacity.object-link:hover, .dashboard-background-color-light-very-low-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.12);
+    color: White; }
+
+.dashboard-color-light-low-opacity {
+  color: rgba(255, 255, 255, 0.4); }
+
+.dashboard-background-color-light-low-opacity {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-low-opacity.btn:hover, .dashboard-background-color-light-low-opacity.btn:focus, .dashboard-background-color-light-low-opacity.object-link:hover, .dashboard-background-color-light-low-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.4);
+    color: White; }
+
+.dashboard-color-light-medium-low-opacity {
+  color: rgba(255, 255, 255, 0.54); }
+
+.dashboard-background-color-light-medium-low-opacity {
+  background-color: rgba(255, 255, 255, 0.54);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-medium-low-opacity.btn:hover, .dashboard-background-color-light-medium-low-opacity.btn:focus, .dashboard-background-color-light-medium-low-opacity.object-link:hover, .dashboard-background-color-light-medium-low-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.54);
+    color: White; }
+
+.dashboard-color-light-medium-opacity {
+  color: rgba(255, 255, 255, 0.76); }
+
+.dashboard-background-color-light-medium-opacity {
+  background-color: rgba(255, 255, 255, 0.76);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-medium-opacity.btn:hover, .dashboard-background-color-light-medium-opacity.btn:focus, .dashboard-background-color-light-medium-opacity.object-link:hover, .dashboard-background-color-light-medium-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.76);
+    color: White; }
+
+.dashboard-color-light-high-opacity {
+  color: rgba(255, 255, 255, 0.87); }
+
+.dashboard-background-color-light-high-opacity {
+  background-color: rgba(255, 255, 255, 0.87);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-high-opacity.btn:hover, .dashboard-background-color-light-high-opacity.btn:focus, .dashboard-background-color-light-high-opacity.object-link:hover, .dashboard-background-color-light-high-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.87);
+    color: White; }
+
+.dashboard-color-dark-low-opacity {
+  color: rgba(0, 0, 0, 0.4); }
+
+.dashboard-background-color-dark-low-opacity {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: White; }
+  .dashboard-background-color-dark-low-opacity.btn:hover, .dashboard-background-color-dark-low-opacity.btn:focus, .dashboard-background-color-dark-low-opacity.object-link:hover, .dashboard-background-color-dark-low-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: White; }
+
+.dashboard-color-dark-very-low-opacity {
+  color: rgba(0, 0, 0, 0.12); }
+
+.dashboard-background-color-dark-very-low-opacity {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: White; }
+  .dashboard-background-color-dark-very-low-opacity.btn:hover, .dashboard-background-color-dark-very-low-opacity.btn:focus, .dashboard-background-color-dark-very-low-opacity.object-link:hover, .dashboard-background-color-dark-very-low-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: White; }
+
+.dashboard-color-dark-medium-low-opacity {
+  color: rgba(0, 0, 0, 0.54); }
+
+.dashboard-background-color-dark-medium-low-opacity {
+  background-color: rgba(0, 0, 0, 0.54);
+  color: White; }
+  .dashboard-background-color-dark-medium-low-opacity.btn:hover, .dashboard-background-color-dark-medium-low-opacity.btn:focus, .dashboard-background-color-dark-medium-low-opacity.object-link:hover, .dashboard-background-color-dark-medium-low-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.54);
+    color: White; }
+
+.dashboard-color-dark-medium-opacity {
+  color: rgba(0, 0, 0, 0.76); }
+
+.dashboard-background-color-dark-medium-opacity {
+  background-color: rgba(0, 0, 0, 0.76);
+  color: White; }
+  .dashboard-background-color-dark-medium-opacity.btn:hover, .dashboard-background-color-dark-medium-opacity.btn:focus, .dashboard-background-color-dark-medium-opacity.object-link:hover, .dashboard-background-color-dark-medium-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.76);
+    color: White; }
+
+.dashboard-color-dark-high-opacity {
+  color: rgba(0, 0, 0, 0.87); }
+
+.dashboard-background-color-dark-high-opacity {
+  background-color: rgba(0, 0, 0, 0.87);
+  color: White; }
+  .dashboard-background-color-dark-high-opacity.btn:hover, .dashboard-background-color-dark-high-opacity.btn:focus, .dashboard-background-color-dark-high-opacity.object-link:hover, .dashboard-background-color-dark-high-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.87);
+    color: White; }
+
 .dashboard {
   background: #D9DDE0;
   padding: 1rem; }
@@ -51,6 +320,276 @@ h1, h2, h3, h4, h5, h6 {
         margin-top: 1rem; }
         .dashboard .widget .widget-error .widget-error-message-status label {
           font-weight: bold; }
+
+.dashboard-color-error {
+  color: #cc3a3a; }
+
+.dashboard-background-color-error {
+  background-color: #cc3a3a;
+  color: White; }
+  .dashboard-background-color-error.btn:hover, .dashboard-background-color-error.btn:focus, .dashboard-background-color-error.object-link:hover, .dashboard-background-color-error.object-link:focus {
+    background-color: #a82b2b;
+    color: White; }
+
+.dashboard-color-warning {
+  color: #ffd144; }
+
+.dashboard-background-color-warning {
+  background-color: #ffd144;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-warning.btn:hover, .dashboard-background-color-warning.btn:focus, .dashboard-background-color-warning.object-link:hover, .dashboard-background-color-warning.object-link:focus {
+    background-color: #ffc411;
+    color: White; }
+
+.dashboard-color-primary {
+  color: #0097c8; }
+
+.dashboard-background-color-primary {
+  background-color: #0097c8;
+  color: White; }
+  .dashboard-background-color-primary.btn:hover, .dashboard-background-color-primary.btn:focus, .dashboard-background-color-primary.object-link:hover, .dashboard-background-color-primary.object-link:focus {
+    background-color: #007095;
+    color: White; }
+
+.dashboard-color-primary-hover {
+  color: rgba(233, 242, 247, 0.36); }
+
+.dashboard-background-color-primary-hover {
+  background-color: rgba(233, 242, 247, 0.36);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-primary-hover.btn:hover, .dashboard-background-color-primary-hover.btn:focus, .dashboard-background-color-primary-hover.object-link:hover, .dashboard-background-color-primary-hover.object-link:focus {
+    background-color: rgba(196, 220, 233, 0.36);
+    color: White; }
+
+.dashboard-color-primary-light {
+  color: #38c7d4; }
+
+.dashboard-background-color-primary-light {
+  background-color: #38c7d4;
+  color: White; }
+  .dashboard-background-color-primary-light.btn:hover, .dashboard-background-color-primary-light.btn:focus, .dashboard-background-color-primary-light.object-link:hover, .dashboard-background-color-primary-light.object-link:focus {
+    background-color: #27a7b2;
+    color: White; }
+
+.dashboard-color-primary-dark-background {
+  color: #6ADBFF; }
+
+.dashboard-background-color-primary-dark-background {
+  background-color: #6ADBFF;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-primary-dark-background.btn:hover, .dashboard-background-color-primary-dark-background.btn:focus, .dashboard-background-color-primary-dark-background.object-link:hover, .dashboard-background-color-primary-dark-background.object-link:focus {
+    background-color: #37cfff;
+    color: White; }
+
+.dashboard-color-primary-dark {
+  color: #2F539C; }
+
+.dashboard-background-color-primary-dark {
+  background-color: #2F539C;
+  color: White; }
+  .dashboard-background-color-primary-dark.btn:hover, .dashboard-background-color-primary-dark.btn:focus, .dashboard-background-color-primary-dark.object-link:hover, .dashboard-background-color-primary-dark.object-link:focus {
+    background-color: #233e75;
+    color: White; }
+
+.dashboard-color-primary-100 {
+  color: #e9f2f7; }
+
+.dashboard-background-color-primary-100 {
+  background-color: #e9f2f7;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-primary-100.btn:hover, .dashboard-background-color-primary-100.btn:focus, .dashboard-background-color-primary-100.object-link:hover, .dashboard-background-color-primary-100.object-link:focus {
+    background-color: #c4dce9;
+    color: White; }
+
+.dashboard-color-primary-500 {
+  color: #0072bc; }
+
+.dashboard-background-color-primary-500 {
+  background-color: #0072bc;
+  color: White; }
+  .dashboard-background-color-primary-500.btn:hover, .dashboard-background-color-primary-500.btn:focus, .dashboard-background-color-primary-500.object-link:hover, .dashboard-background-color-primary-500.object-link:focus {
+    background-color: #005389;
+    color: White; }
+
+.dashboard-color-primary-400 {
+  color: #068db9; }
+
+.dashboard-background-color-primary-400 {
+  background-color: #068db9;
+  color: White; }
+  .dashboard-background-color-primary-400.btn:hover, .dashboard-background-color-primary-400.btn:focus, .dashboard-background-color-primary-400.object-link:hover, .dashboard-background-color-primary-400.object-link:focus {
+    background-color: #046788;
+    color: White; }
+
+.dashboard-color-primary-200 {
+  color: #DFE4E8; }
+
+.dashboard-background-color-primary-200 {
+  background-color: #DFE4E8;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-primary-200.btn:hover, .dashboard-background-color-primary-200.btn:focus, .dashboard-background-color-primary-200.object-link:hover, .dashboard-background-color-primary-200.object-link:focus {
+    background-color: #c1cbd3;
+    color: White; }
+
+.dashboard-color-secondary {
+  color: #FF1753; }
+
+.dashboard-background-color-secondary {
+  background-color: #FF1753;
+  color: White; }
+  .dashboard-background-color-secondary.btn:hover, .dashboard-background-color-secondary.btn:focus, .dashboard-background-color-secondary.object-link:hover, .dashboard-background-color-secondary.object-link:focus {
+    background-color: #e3003b;
+    color: White; }
+
+.dashboard-color-gray-100 {
+  color: #f5f5f5; }
+
+.dashboard-background-color-gray-100 {
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-gray-100.btn:hover, .dashboard-background-color-gray-100.btn:focus, .dashboard-background-color-gray-100.object-link:hover, .dashboard-background-color-gray-100.object-link:focus {
+    background-color: gainsboro;
+    color: White; }
+
+.dashboard-color-gray-200 {
+  color: #dcdcdc; }
+
+.dashboard-background-color-gray-200 {
+  background-color: #dcdcdc;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-gray-200.btn:hover, .dashboard-background-color-gray-200.btn:focus, .dashboard-background-color-gray-200.object-link:hover, .dashboard-background-color-gray-200.object-link:focus {
+    background-color: #c3c3c3;
+    color: White; }
+
+.dashboard-color-gray-500 {
+  color: #9E9E9E; }
+
+.dashboard-background-color-gray-500 {
+  background-color: #9E9E9E;
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-gray-500.btn:hover, .dashboard-background-color-gray-500.btn:focus, .dashboard-background-color-gray-500.object-link:hover, .dashboard-background-color-gray-500.object-link:focus {
+    background-color: #858585;
+    color: White; }
+
+.dashboard-color-gray-700 {
+  color: #616161; }
+
+.dashboard-background-color-gray-700 {
+  background-color: #616161;
+  color: White; }
+  .dashboard-background-color-gray-700.btn:hover, .dashboard-background-color-gray-700.btn:focus, .dashboard-background-color-gray-700.object-link:hover, .dashboard-background-color-gray-700.object-link:focus {
+    background-color: #484848;
+    color: White; }
+
+.dashboard-color-gray-900 {
+  color: #333333; }
+
+.dashboard-background-color-gray-900 {
+  background-color: #333333;
+  color: White; }
+  .dashboard-background-color-gray-900.btn:hover, .dashboard-background-color-gray-900.btn:focus, .dashboard-background-color-gray-900.object-link:hover, .dashboard-background-color-gray-900.object-link:focus {
+    background-color: #1a1a1a;
+    color: White; }
+
+.dashboard-color-light-very-low-opacity {
+  color: rgba(255, 255, 255, 0.12); }
+
+.dashboard-background-color-light-very-low-opacity {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-very-low-opacity.btn:hover, .dashboard-background-color-light-very-low-opacity.btn:focus, .dashboard-background-color-light-very-low-opacity.object-link:hover, .dashboard-background-color-light-very-low-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.12);
+    color: White; }
+
+.dashboard-color-light-low-opacity {
+  color: rgba(255, 255, 255, 0.4); }
+
+.dashboard-background-color-light-low-opacity {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-low-opacity.btn:hover, .dashboard-background-color-light-low-opacity.btn:focus, .dashboard-background-color-light-low-opacity.object-link:hover, .dashboard-background-color-light-low-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.4);
+    color: White; }
+
+.dashboard-color-light-medium-low-opacity {
+  color: rgba(255, 255, 255, 0.54); }
+
+.dashboard-background-color-light-medium-low-opacity {
+  background-color: rgba(255, 255, 255, 0.54);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-medium-low-opacity.btn:hover, .dashboard-background-color-light-medium-low-opacity.btn:focus, .dashboard-background-color-light-medium-low-opacity.object-link:hover, .dashboard-background-color-light-medium-low-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.54);
+    color: White; }
+
+.dashboard-color-light-medium-opacity {
+  color: rgba(255, 255, 255, 0.76); }
+
+.dashboard-background-color-light-medium-opacity {
+  background-color: rgba(255, 255, 255, 0.76);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-medium-opacity.btn:hover, .dashboard-background-color-light-medium-opacity.btn:focus, .dashboard-background-color-light-medium-opacity.object-link:hover, .dashboard-background-color-light-medium-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.76);
+    color: White; }
+
+.dashboard-color-light-high-opacity {
+  color: rgba(255, 255, 255, 0.87); }
+
+.dashboard-background-color-light-high-opacity {
+  background-color: rgba(255, 255, 255, 0.87);
+  color: rgba(0, 0, 0, 0.87); }
+  .dashboard-background-color-light-high-opacity.btn:hover, .dashboard-background-color-light-high-opacity.btn:focus, .dashboard-background-color-light-high-opacity.object-link:hover, .dashboard-background-color-light-high-opacity.object-link:focus {
+    background-color: rgba(230, 230, 230, 0.87);
+    color: White; }
+
+.dashboard-color-dark-low-opacity {
+  color: rgba(0, 0, 0, 0.4); }
+
+.dashboard-background-color-dark-low-opacity {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: White; }
+  .dashboard-background-color-dark-low-opacity.btn:hover, .dashboard-background-color-dark-low-opacity.btn:focus, .dashboard-background-color-dark-low-opacity.object-link:hover, .dashboard-background-color-dark-low-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: White; }
+
+.dashboard-color-dark-very-low-opacity {
+  color: rgba(0, 0, 0, 0.12); }
+
+.dashboard-background-color-dark-very-low-opacity {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: White; }
+  .dashboard-background-color-dark-very-low-opacity.btn:hover, .dashboard-background-color-dark-very-low-opacity.btn:focus, .dashboard-background-color-dark-very-low-opacity.object-link:hover, .dashboard-background-color-dark-very-low-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: White; }
+
+.dashboard-color-dark-medium-low-opacity {
+  color: rgba(0, 0, 0, 0.54); }
+
+.dashboard-background-color-dark-medium-low-opacity {
+  background-color: rgba(0, 0, 0, 0.54);
+  color: White; }
+  .dashboard-background-color-dark-medium-low-opacity.btn:hover, .dashboard-background-color-dark-medium-low-opacity.btn:focus, .dashboard-background-color-dark-medium-low-opacity.object-link:hover, .dashboard-background-color-dark-medium-low-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.54);
+    color: White; }
+
+.dashboard-color-dark-medium-opacity {
+  color: rgba(0, 0, 0, 0.76); }
+
+.dashboard-background-color-dark-medium-opacity {
+  background-color: rgba(0, 0, 0, 0.76);
+  color: White; }
+  .dashboard-background-color-dark-medium-opacity.btn:hover, .dashboard-background-color-dark-medium-opacity.btn:focus, .dashboard-background-color-dark-medium-opacity.object-link:hover, .dashboard-background-color-dark-medium-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.76);
+    color: White; }
+
+.dashboard-color-dark-high-opacity {
+  color: rgba(0, 0, 0, 0.87); }
+
+.dashboard-background-color-dark-high-opacity {
+  background-color: rgba(0, 0, 0, 0.87);
+  color: White; }
+  .dashboard-background-color-dark-high-opacity.btn:hover, .dashboard-background-color-dark-high-opacity.btn:focus, .dashboard-background-color-dark-high-opacity.object-link:hover, .dashboard-background-color-dark-high-opacity.object-link:focus {
+    background-color: rgba(0, 0, 0, 0.87);
+    color: White; }
 
 .main-nav {
   background: Black;

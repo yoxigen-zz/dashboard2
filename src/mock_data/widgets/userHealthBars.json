@@ -6,7 +6,19 @@
 		{
 			"type": "bars",
 			"settings": {
-				"valueProperty": "health"
+				"valueProperty": "health",
+				"color": {
+					"conditions": [
+						{
+							"lessThanOrEquals": 5,
+							"value": "$warning"
+						},
+						{
+							"lessThanOrEquals": 3,
+							"value": "$error"
+						}
+					]
+				}
 			}
 		}
 	]

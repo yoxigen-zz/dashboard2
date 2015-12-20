@@ -1,3 +1,5 @@
+@import "colors";
+
 .main-nav{
   background: Black;
   color: White;
@@ -10,7 +12,7 @@
 	padding: .5rem 1rem;
 
 	  &.router-link-active{
-		  background: $secondary-color;
+		  background: color(secondary);
 		  cursor: default;
 	  }
   }

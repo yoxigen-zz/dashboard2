@@ -36,7 +36,7 @@
 	}
 
 	.bars-chart-bar {
-		background: $primary-color;
+		background: color(primary);
 		color: white;
 		font-size: 11px;
 		padding: 1px 6px;
@@ -47,7 +47,7 @@
 		transition: all 600ms ease;
 
 		&.outter-value {
-			color: $dark-high-opacity;
+			color: color(dark-high-opacity);
 			position: relative;
 
 			.bars-chart-value {
@@ -65,7 +65,7 @@
 		position: absolute;
 		left: 0;
 		top: 2px;
-		color: $dark-medium-opacity;
+		color: color(dark-medium-opacity);
 	}
 
 	.bars-chart-image {

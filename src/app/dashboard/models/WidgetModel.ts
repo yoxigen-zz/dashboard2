@@ -14,13 +14,10 @@ export class WidgetModel{
 	private _dataObserver:Subscriber<any>;
 	error:Error;
 
-	private http:Http;
-
-    constructor(config:WidgetModelConfig, http:Http){
+    constructor(config:WidgetModelConfig, private http:Http){
         this.id = config.id;
         this.title = config.title;
 		this.dataSource = config.dataSource;
-		this.http = http;
 
 		this.data$ = new Observable(observer => this._dataObserver = observer).share();
 

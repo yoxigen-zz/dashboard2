@@ -29,19 +29,14 @@ export class BarsChartComponent implements ViewTypeComponentInterface, OnChanges
 	@Input() settings:BarsChartOptions;
 	@Input() data:Array<BarsChartItem>;
 
-	elementRef:ElementRef;
-	barsChartService:BarsChartService;
-
 	private OUTTER_VALUE_CLASS:string = "outter-value";
 
 	private options:BarsChartOptions;
 	maxValue:number;
 	minValue:number = 0;
 
-	constructor(elementRef:ElementRef, barsChartService:BarsChartService){
-		this.elementRef = elementRef;
+	constructor(private elementRef:ElementRef, private barsChartService:BarsChartService){
 		this.options = barsChartService.parseOptions(this.settings);
-		this.barsChartService = barsChartService;
 	}
 
 	ngOnChanges(changes){

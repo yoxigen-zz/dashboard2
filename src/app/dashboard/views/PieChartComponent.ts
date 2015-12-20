@@ -13,11 +13,9 @@ export class PieChartComponent implements ViewTypeComponentInterface, OnChanges{
 	@Input() settings:Object;
 	@Input() data:any;
 
-	elementRef:ElementRef;
 	chart:c3.ChartAPI;
 
-	constructor(elementRef:ElementRef){
-		this.elementRef = elementRef;
+	constructor(private elementRef:ElementRef){
 	}
 
 	ngOnChanges(changes){

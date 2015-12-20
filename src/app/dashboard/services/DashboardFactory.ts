@@ -4,10 +4,8 @@ import {WidgetsService} from "./WidgetsService";
 
 @Injectable()
 export class DashboardFactory{
-	widgetsService:WidgetsService;
 
-	constructor(widgetsService:WidgetsService){
-		this.widgetsService = widgetsService;
+	constructor(private widgetsService:WidgetsService){
 	}
 
 	public createDashboard(dashboardConfig:DashboardModelConfig){

@@ -5,6 +5,7 @@ var DashboardModel = (function () {
         this.title = dashboardConfig.title;
         this.widgets = [];
         var self = this;
+        // TODO: Load widgets only when the dashboard is actually loaded (with loadWidgetsData)?
         var widgetLoadPromises = dashboardConfig.widgets.map(function (widgetConfig, index) {
             return widgetsService.getWidgetById(widgetConfig.id).then(function (widget) {
                 if (!widget)

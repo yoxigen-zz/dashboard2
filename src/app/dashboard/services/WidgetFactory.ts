@@ -4,10 +4,7 @@ import {WidgetModel, WidgetModelConfig} from "../models/WidgetModel";
 
 @Injectable()
 export class WidgetFactory{
-	http:Http;
-
-	constructor(http:Http){
-		this.http = http;
+	constructor(private http:Http){
 	}
 
 	public createWidget(widgetConfig:WidgetModelConfig){

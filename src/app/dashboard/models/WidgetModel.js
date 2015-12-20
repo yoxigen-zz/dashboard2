@@ -4,10 +4,10 @@ var Rx_1 = require('rxjs/Rx');
 var WidgetModel = (function () {
     function WidgetModel(config, http) {
         var _this = this;
+        this.http = http;
         this.id = config.id;
         this.title = config.title;
         this.dataSource = config.dataSource;
-        this.http = http;
         this.data$ = new Rx_1.Observable(function (observer) { return _this._dataObserver = observer; }).share();
         if (config.views)
             this.views = utils_1.Utils.Objects.toObjectArray(config.views, WidgetViewModel_1.WidgetViewModel);

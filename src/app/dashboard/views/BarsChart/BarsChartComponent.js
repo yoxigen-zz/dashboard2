@@ -13,11 +13,11 @@ var BarComponent_1 = require("./BarComponent");
 var BarsChartService_1 = require("./BarsChartService");
 var BarsChartComponent = (function () {
     function BarsChartComponent(elementRef, barsChartService) {
+        this.elementRef = elementRef;
+        this.barsChartService = barsChartService;
         this.OUTTER_VALUE_CLASS = "outter-value";
         this.minValue = 0;
-        this.elementRef = elementRef;
         this.options = barsChartService.parseOptions(this.settings);
-        this.barsChartService = barsChartService;
     }
     BarsChartComponent.prototype.ngOnChanges = function (changes) {
         if (changes.settings)

@@ -13,10 +13,10 @@ var DashboardFactory_1 = require("./DashboardFactory");
 var utils_1 = require("./utils");
 var DashboardsService = (function () {
     function DashboardsService(http, dashboardFactory) {
-        this.isGettingDashboards = false;
-        this.onDashboards = [];
         this.http = http;
         this.dashboardFactory = dashboardFactory;
+        this.isGettingDashboards = false;
+        this.onDashboards = [];
     }
     /**
      * Gets an array of available dashboards

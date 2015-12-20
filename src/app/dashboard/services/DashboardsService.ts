@@ -6,17 +6,13 @@ import {Utils} from "./utils";
 
 @Injectable()
 export class DashboardsService{
-    private http:Http;
-	private dashboardFactory:DashboardFactory;
 	private dashboardsMap:Map<string, DashboardModel>;
 	private isGettingDashboards:boolean = false;
 	private onDashboards:Array<(dashboards:DashboardModel[]) => void> = [];
 
 	allDashboards:DashboardModel[];
 
-	constructor(http:Http, dashboardFactory:DashboardFactory){
-        this.http = http;
-		this.dashboardFactory = dashboardFactory;
+	constructor(private http:Http, private dashboardFactory:DashboardFactory){
     }
 
 	/**

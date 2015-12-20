@@ -18,6 +18,7 @@ export class DashboardModel{
 
 		let self = this;
 
+		// TODO: Load widgets only when the dashboard is actually loaded (with loadWidgetsData)?
 		let widgetLoadPromises:Array<Promise<WidgetModel>> = dashboardConfig.widgets.map((widgetConfig, index:number) => {
 
 			return widgetsService.getWidgetById(widgetConfig.id).then((widget:WidgetModel) => {

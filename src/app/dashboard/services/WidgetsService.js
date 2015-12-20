@@ -12,9 +12,9 @@ var WidgetFactory_1 = require("./WidgetFactory");
 var http_1 = require("angular2/http");
 var WidgetsService = (function () {
     function WidgetsService(widgetFactory, http) {
-        this.widgets = new Map();
         this.widgetFactory = widgetFactory;
         this.http = http;
+        this.widgets = new Map();
     }
     WidgetsService.prototype.registerWidget = function (widgetConfig) {
         var model = this.widgetFactory.createWidget(widgetConfig);

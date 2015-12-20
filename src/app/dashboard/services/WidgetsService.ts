@@ -8,12 +8,8 @@ import {Response} from "angular2/http";
 @Injectable()
 export class WidgetsService{
 	widgets:Map<string, WidgetModel> = new Map<string, WidgetModel>();
-	widgetFactory:WidgetFactory;
-	http:Http;
 
-	constructor(widgetFactory:WidgetFactory, http:Http){
-		this.widgetFactory = widgetFactory;
-		this.http = http;
+	constructor(private widgetFactory:WidgetFactory, private http:Http){
 	}
 
 	public registerWidget(widgetConfig:WidgetModelConfig):WidgetModel{

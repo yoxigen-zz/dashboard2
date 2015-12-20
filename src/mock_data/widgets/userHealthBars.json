@@ -8,14 +8,28 @@
 			"settings": {
 				"valueProperty": "health",
 				"color": {
-					"conditions": [
+					"conditional": [
 						{
-							"lessThanOrEquals": 5,
-							"value": "$warning"
+							"conditions": [
+								{
+									"operator": "<=",
+									"value": 5
+								},
+								{
+									"operator": ">",
+									"value": 3
+								}
+							],
+							"value": "$error"
 						},
 						{
-							"lessThanOrEquals": 3,
-							"value": "$error"
+							"conditions": [
+								{
+									"operator": "<=",
+									"value": 3
+								}
+							],
+							"value": "$warning"
 						}
 					]
 				}

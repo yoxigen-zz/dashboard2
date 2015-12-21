@@ -1,6 +1,7 @@
 import {Injectable} from "angular2/core";
 import {BarsChartItem} from "./BarItemModel";
 import {BarsChartOptions} from "./BarsChartOptions";
+import {Conditional} from "../../conditional/Conditional";
 
 @Injectable()
 export class BarsChartService{
@@ -22,16 +23,20 @@ export class BarsChartService{
 	}
 
 	parseBarsData(data:Array<any>, options:BarsChartOptions){
-		let parsedData = Object.freeze(data.map((item, i:number) => {
-			return Object.assign({}, item, {
-				value: options.getValue(item)
-			});
+		let parsedData:Array<BarsChartItem> = data.map((item, i:number) => {
+			return {
+				value: options.getValue(item),
+				name: item.name,
+				item: item,
+				size: 0,
+				valueDisplay: null
+			};
 		}).sort(function(a, b){
 			if (a.value === b.value)
 				return 0;
 
 			return a.value < b.value ? 1 : -1;
-		}));
+		});
 
 		let minValue:number = !isNaN(options.min) ? options.min : parsedData[parsedData.length - 1].value;
 		let maxValue:number = !isNaN(options.max) ? options.max : parsedData[0].value;
@@ -39,7 +44,7 @@ export class BarsChartService{
 
 		parsedData = parsedData.map((item, i:number) => {
 			return Object.freeze(Object.assign(item, {
-				color: options.getColor && options.getColor(item, 0, i),
+				color: options.getColor && options.getColor(item, i),
 				size: item.value / sizeDelta,
 				valueDisplay: options.formatValue(item.value, item)
 			}));
@@ -63,21 +68,31 @@ export class BarsChartService{
 		}
 	}
 
-	private prepareGetItemColor(options:BarsChartOptions): (item:any, itemSize:number, itemIndex:number) => string{
+	private prepareGetItemColor(options:BarsChartOptions): (item:BarsChartItem, index:number) => string{
 		if (options.getColor)
 			return options.getColor;
 
-		if (options.colorPattern){
-			return (item:any, itemSize:number, index:number) => {
-				if (options.colorPattern.length === 1)
-					return options.colorPattern[0];
+		if (options.color){
+			if (options.color.conditional){
+				var colorConditional = new Conditional(options.color.conditional);
 
-				return options.colorPattern[index % options.colorPattern.length];
+				return (item:BarsChartItem):string => {
+					return colorConditional.getValue(item.value);
+				};
 			}
-		}
 
-		if (options.color)
-			return (item:any, itemSize:number, index:number) => { return options.color };
+			if (options.color.pattern){
+				return (item:BarsChartItem, index:number) => {
+					if (options.color.pattern.length === 1)
+						return options.color.pattern[0];
+
+					return options.color.pattern[index % options.color.pattern.length];
+				}
+			}
+
+			if (options.color.value)
+				return () => { return options.color.value; };
+		}
 
 		return null;
 	}

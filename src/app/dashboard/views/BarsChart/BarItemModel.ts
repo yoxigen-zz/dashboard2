@@ -5,6 +5,6 @@ export interface BarsChartItem{
 	icon?:string,
 	image?:string,
 	size:number,
-	color:string,
+	color?:string,
 	valueDisplay:string
 }

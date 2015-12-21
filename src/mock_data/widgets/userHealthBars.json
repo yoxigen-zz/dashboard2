@@ -8,30 +8,29 @@
 			"settings": {
 				"valueProperty": "health",
 				"color": {
-					"conditional": [
-						{
-							"conditions": [
-								{
-									"operator": "<=",
-									"value": 5
-								},
-								{
-									"operator": ">",
-									"value": 3
-								}
-							],
-							"value": "$error"
-						},
-						{
-							"conditions": [
-								{
-									"operator": "<=",
-									"value": 3
-								}
-							],
-							"value": "$warning"
-						}
-					]
+					"conditional": {
+						"defaultValue": "$primary",
+						"conditionGroups": [
+							{
+								"conditions": [
+									{
+										"operator": "===",
+										"value": 7
+									}
+								],
+								"output": "Purple"
+							},
+							{
+								"conditions": [
+									{
+										"operator": "<=",
+										"value": 3
+									}
+								],
+								"output": "Green"
+							}
+						]
+					}
 				}
 			}
 		}

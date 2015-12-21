@@ -9,8 +9,8 @@ import {ResolvedInstruction} from "angular2/src/router/instruction";
 	directives: [ROUTER_DIRECTIVES],
 	template: `
 		<nav class="main-nav">
-			<a *ngFor="#dashboard of allDashboards"
-			[routerLink]="['DashboardPage',{ dashboardId: dashboard.id }]">{{dashboard.title}}</a>
+			<a *ngFor="#dashboard of allDashboards" [routerLink]="['DashboardPage',{ dashboardId: dashboard.id }]">{{dashboard.title}}</a>
+			<a [routerLink]="['WidgetBuilderPage']">Widget Builder</a>
     	</nav>
 	`
 })

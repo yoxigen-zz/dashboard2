@@ -14,20 +14,20 @@
 							{
 								"conditions": [
 									{
-										"operator": "===",
-										"value": 7
-									}
-								],
-								"output": "Purple"
-							},
-							{
-								"conditions": [
-									{
 										"operator": "<=",
 										"value": 3
 									}
 								],
-								"output": "Green"
+								"output": "Red"
+							},
+							{
+								"conditions": [
+									{
+										"operator": "<",
+										"value": 7
+									}
+								],
+								"output": "Orange"
 							}
 						]
 					}

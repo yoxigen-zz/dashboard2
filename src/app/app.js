@@ -11,6 +11,7 @@ var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var DashboardPageComponent_1 = require("./components/DashboardPageComponent");
 var AppNavComponent_1 = require("./components/AppNavComponent");
+var WidgetBuilderPage_1 = require("./components/WidgetBuilderPage");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -22,7 +23,8 @@ var AppComponent = (function () {
         }),
         router_1.RouteConfig([
             { path: '/', redirectTo: ["DashboardPage", { dashboardId: "main" }] },
-            { path: '/d/:dashboardId', component: DashboardPageComponent_1.DashboardPageComponent, name: "DashboardPage" }
+            { path: '/d/:dashboardId', component: DashboardPageComponent_1.DashboardPageComponent, name: "DashboardPage" },
+            { path: '/builder', component: WidgetBuilderPage_1.WidgetBuilderPage, name: "WidgetBuilderPage" }
         ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

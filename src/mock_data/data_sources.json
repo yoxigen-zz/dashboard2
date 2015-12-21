@@ -1,0 +1,51 @@
+[
+	{
+		"url": "user_types.json",
+		"name": "User Types",
+		"isList": true,
+		"properties": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "value",
+				"type": "number"
+			}
+		]
+	},
+	{
+		"url": "users.json",
+		"name": "Users",
+		"isList": true,
+		"properties": [
+			{
+				"name": "id",
+				"type": "number"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "age",
+				"type": "number"
+			}
+		]
+	},
+	{
+		"url": "users_health.json",
+		"name": "Users Health",
+		"isList": true,
+		"properties": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "health",
+				"type": "number"
+			}
+		]
+	}
+]

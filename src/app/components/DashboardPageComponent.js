@@ -11,7 +11,6 @@ var core_1 = require("angular2/core");
 var DashboardsService_1 = require("../dashboard/services/DashboardsService");
 var DashboardComponent_1 = require("../dashboard/components/DashboardComponent");
 var router_1 = require("angular2/router");
-'use strict';
 var DashboardPageComponent = (function () {
     function DashboardPageComponent(dashboardsService, params) {
         var _this = this;

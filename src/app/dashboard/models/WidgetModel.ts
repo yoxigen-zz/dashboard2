@@ -2,27 +2,31 @@ import {WidgetViewModel, WidgetViewModelConfig} from './WidgetViewModel';
 import {Utils} from '../services/utils';
 import {Http, Response} from 'angular2/http';
 import { Observable, Subscriber } from 'rxjs/Rx';
+import {DataSourceModel, DataSourceModelOptions} from "./DataSourceModel";
+import {DataSources} from "../services/DataSources";
 
 export class WidgetModel{
     id:string;
     title:string;
     lastUpdateTime:Date;
-	dataSource:string;
+	dataSource:DataSourceModel;
 	views:WidgetViewModel[];
 	data:any;
 	data$:Observable<any>;
 	private _dataObserver:Subscriber<any>;
 	error:Error;
 
-    constructor(config:WidgetModelConfig, private http:Http){
-        this.id = config.id;
-        this.title = config.title;
-		this.dataSource = config.dataSource;
+    constructor(private http:Http, private dataSources:DataSources, config?:WidgetModelConfig){
+		if (config) {
+			this.id = config.id;
+			this.title = config.title;
+			this.dataSource = dataSources.getDataSourceById(config.dataSource);
+
+			if (config.views)
+				this.views = Utils.Objects.toObjectArray(config.views, WidgetViewModel);
+		}
 
 		this.data$ = new Observable(observer => this._dataObserver = observer).share();
-
-		if (config.views)
-			this.views = Utils.Objects.toObjectArray(config.views, WidgetViewModel);
     }
 
     /**
@@ -32,7 +36,7 @@ export class WidgetModel{
 		if (!this.dataSource)
 			return;
 
-		this.http.get("mock_data/data/" + this.dataSource).subscribe((res:Response) => {
+		this.http.get("mock_data/data/" + this.dataSource.url).subscribe((res:Response) => {
 			this.data = Object.freeze((<{}[]>res.json()));
 			this._dataObserver && this._dataObserver.next(this.data);
 			this.error = null;

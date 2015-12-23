@@ -2,15 +2,18 @@ var WidgetViewModel_1 = require('./WidgetViewModel');
 var utils_1 = require('../services/utils');
 var Rx_1 = require('rxjs/Rx');
 var WidgetModel = (function () {
-    function WidgetModel(config, http) {
+    function WidgetModel(http, dataSources, config) {
         var _this = this;
         this.http = http;
-        this.id = config.id;
-        this.title = config.title;
-        this.dataSource = config.dataSource;
+        this.dataSources = dataSources;
+        if (config) {
+            this.id = config.id;
+            this.title = config.title;
+            this.dataSource = dataSources.getDataSourceById(config.dataSource);
+            if (config.views)
+                this.views = utils_1.Utils.Objects.toObjectArray(config.views, WidgetViewModel_1.WidgetViewModel);
+        }
         this.data$ = new Rx_1.Observable(function (observer) { return _this._dataObserver = observer; }).share();
-        if (config.views)
-            this.views = utils_1.Utils.Objects.toObjectArray(config.views, WidgetViewModel_1.WidgetViewModel);
     }
     /**
      * Refreshes the widget's data
@@ -19,7 +22,7 @@ var WidgetModel = (function () {
         var _this = this;
         if (!this.dataSource)
             return;
-        this.http.get("mock_data/data/" + this.dataSource).subscribe(function (res) {
+        this.http.get("mock_data/data/" + this.dataSource.url).subscribe(function (res) {
             _this.data = Object.freeze(res.json());
             _this._dataObserver && _this._dataObserver.next(_this.data);
             _this.error = null;

@@ -1,26 +1,26 @@
 [
 	{
 		"name": "Yossi",
-		"value": 7
+		"value": 36
 	},
 	{
 		"name": "Efrat",
-		"value": 5
+		"value": 35
 	},
 	{
 		"name": "Lynn",
-		"value": 8
-	},
-	{
-		"name": "Daiana",
-		"value": 3
-	},
-	{
-		"name": "Mom",
 		"value": 2
 	},
 	{
+		"name": "Daiana",
+		"value": 26
+	},
+	{
+		"name": "Mom",
+		"value": 59
+	},
+	{
 		"name": "Dad",
-		"value": 7
+		"value": 63
 	}
 ]

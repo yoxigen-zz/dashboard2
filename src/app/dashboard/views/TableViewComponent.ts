@@ -2,6 +2,7 @@ import {Component, Input, OnChanges} from 'angular2/core';
 import {WidgetViewTypeModel} from "../models/WidgetViewTypeModel";
 import {ViewTypeComponentInterface} from "../interfaces/ViewTypeComponentInterface";
 import {Response} from "angular2/http";
+import {ViewSettingProperty, WidgetView} from "../reflection/ViewSettingsDecorators";
 
 @Component({
 	selector: "table-view",
@@ -29,6 +30,17 @@ import {Response} from "angular2/http";
     `
 })
 export class TableViewComponent implements ViewTypeComponentInterface{
-	@Input() settings:Object;
+	@Input() settings:TableViewComponentSettings;
 	@Input() data:any[];
+}
+
+@WidgetView({ name: "Table", selector: "table-view", id: "table" })
+class TableViewComponentSettings{
+	@ViewSettingProperty({ name: "Table Fields", type: "String" })
+	fields:Array<TableField>;
+}
+
+class TableField{
+	id:string;
+	name:string;
 }

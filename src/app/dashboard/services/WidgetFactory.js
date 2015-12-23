@@ -10,16 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("angular2/core");
 var http_1 = require("angular2/http");
 var WidgetModel_1 = require("../models/WidgetModel");
+var DataSources_1 = require("./DataSources");
 var WidgetFactory = (function () {
-    function WidgetFactory(http) {
+    function WidgetFactory(http, dataSources) {
         this.http = http;
+        this.dataSources = dataSources;
     }
     WidgetFactory.prototype.createWidget = function (widgetConfig) {
-        return new WidgetModel_1.WidgetModel(widgetConfig, this.http);
+        return new WidgetModel_1.WidgetModel(this.http, this.dataSources, widgetConfig);
     };
     WidgetFactory = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, DataSources_1.DataSources])
     ], WidgetFactory);
     return WidgetFactory;
 })();

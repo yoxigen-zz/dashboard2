@@ -2,6 +2,7 @@
 	{
 		"url": "user_types.json",
 		"name": "User Types",
+		"id": "user_types",
 		"isList": true,
 		"properties": [
 			{
@@ -17,6 +18,7 @@
 	{
 		"url": "users.json",
 		"name": "Users",
+		"id": "users",
 		"isList": true,
 		"properties": [
 			{
@@ -36,6 +38,7 @@
 	{
 		"url": "users_health.json",
 		"name": "Users Health",
+		"id": "users_health",
 		"isList": true,
 		"properties": [
 			{
@@ -43,7 +46,23 @@
 				"type": "string"
 			},
 			{
-				"name": "health",
+				"name": "value",
+				"type": "number"
+			}
+		]
+	},
+	{
+		"url": "users_age.json",
+		"name": "Users Age",
+		"id": "users_age",
+		"isList": true,
+		"properties": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "value",
 				"type": "number"
 			}
 		]

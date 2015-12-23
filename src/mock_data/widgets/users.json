@@ -1,7 +1,7 @@
 {
 	"id": "users",
 	"title": "Users",
-	"dataSource": "users.json",
+	"dataSource": "users",
 	"views": [
 		{
 			"type": "table",

@@ -1,4 +1,6 @@
 import {Component, Output, EventEmitter} from "angular2/core";
+import {WidgetFactory} from "../../dashboard/services/WidgetFactory";
+import {DataSources} from "../../dashboard/services/DataSources";
 
 @Component({
 	selector: "widget-settings",
@@ -11,7 +13,7 @@ import {Component, Output, EventEmitter} from "angular2/core";
 						<select *ngSwitchWhen="'select'"
 							[(ngModel)]="widgetSettingValues[setting.id]"
 							(ngModelChange)="onSettingChange(setting)">
-							<option *ngFor="#option of setting.options">{{option.name}}</option>
+							<option *ngFor="#option of setting.options" [value]="option.id">{{option.name}}</option>
 						</select>
 						<input type="text" *ngSwitchWhen="'string'" [(ngModel)]="widgetSettingValues[setting.id]" (ngModelChange)="onSettingChange(setting)" />
 					</label>
@@ -23,70 +25,54 @@ import {Component, Output, EventEmitter} from "angular2/core";
 export class WidgetSettingsComponent{
 	@Output() update:EventEmitter<any> = new EventEmitter();
 
-	private datasources = [
-	{
-		"url": "data/user_types",
-		"name": "User Types",
-		"isList": true,
-		"properties": [
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "value",
-				"type": "number"
-			}
-		]
-	},
-	{
-		"url": "data/users",
-		"name": "Users",
-		"isList": true,
-		"properties": [
-			{
-				"name": "id",
-				"type": "number"
-			},
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "age",
-				"type": "number"
-			}
-		]
-	},
-	{
-		"url": "data/users_health",
-		"name": "Users Health",
-		"isList": true,
-		"properties": [
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "health",
-				"type": "number"
-			}
-		]
-	}
-];
+	constructor(private widgetFactory:WidgetFactory, private dataSources:DataSources){}
 
 	widgetSettings = [
 		{ id: "id", type: "string", name: "ID", required: true },
 		{ id: "title", type: "string", name: "Widget Title", required: true },
-		{ id: "dataSource", type: "select", name: "Data Source", options: this.datasources, required: true }
+		{ id: "dataSource", type: "select", name: "Data Source", options: this.dataSources.allDataSources, required: true }
 	];
 
 	widgetSettingValues = {
 		id: "newWidgetID",
-		title: "New Widget"
+		title: "New Widget",
+		dataSource: this.dataSources.allDataSources[0].id,
+		views: [
+			{
+				"type": "bars",
+				"settings": {
+					"valueProperty": "value",
+					"color": {
+						"conditional": {
+							"defaultValue": "$primary",
+							"conditionGroups": [
+								{
+									"conditions": [
+										{
+											"operator": "<=",
+											"value": 3
+										}
+									],
+									"output": "Red"
+								},
+								{
+									"conditions": [
+										{
+											"operator": "<",
+											"value": 7
+										}
+									],
+									"output": "Orange"
+								}
+							]
+						}
+					}
+				}
+			}
+		]
 	};
 
 	onSettingChange(){
-		this.update.emit(this.widgetSettingValues);
+		this.update.emit({ widget: this.widgetFactory.createWidget(this.widgetSettingValues) });
 	}
 }

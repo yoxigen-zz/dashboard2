@@ -1,7 +1,7 @@
 export module Utils{
 
 	export module Arrays {
-		export function toMap(items:any[], key?: string){
+		export function toMap<T>(items:Array<T>, key?: string):Map<any, T>{
 			if (!key)
 				key = "id";
 

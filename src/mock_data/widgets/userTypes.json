@@ -1,7 +1,7 @@
 {
   "id": "userTypes",
   "title": "User Types",
-  "dataSource": "user_types.json",
+  "dataSource": "user_types",
   "views": [
 	{
 	  "type": "pie",

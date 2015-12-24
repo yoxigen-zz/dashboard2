@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var ViewSettingsDecorators_1 = require("../reflection/ViewSettingsDecorators");
+var ViewSettingsDecorators_2 = require("../reflection/ViewSettingsDecorators");
 var TableViewComponent = (function () {
     function TableViewComponent() {
     }
@@ -32,22 +33,35 @@ var TableViewComponent = (function () {
     return TableViewComponent;
 })();
 exports.TableViewComponent = TableViewComponent;
+var TableField = (function () {
+    function TableField() {
+    }
+    __decorate([
+        ViewSettingsDecorators_2.WidgetViewSettingTypeField({ name: "ID", type: "string" }), 
+        __metadata('design:type', String)
+    ], TableField.prototype, "id", void 0);
+    __decorate([
+        ViewSettingsDecorators_2.WidgetViewSettingTypeField({ name: "Name", type: "string" }), 
+        __metadata('design:type', String)
+    ], TableField.prototype, "name", void 0);
+    TableField = __decorate([
+        ViewSettingsDecorators_1.WidgetViewSettingType({ name: "Field", id: "field" }), 
+        __metadata('design:paramtypes', [])
+    ], TableField);
+    return TableField;
+})();
+exports.TableField = TableField;
 var TableViewComponentSettings = (function () {
     function TableViewComponentSettings() {
     }
     __decorate([
-        ViewSettingsDecorators_1.ViewSettingProperty({ name: "Table Fields", type: "String" }), 
+        ViewSettingsDecorators_1.WidgetViewSetting({ name: "Table Fields", list: { itemType: "field" } }), 
         __metadata('design:type', Array)
     ], TableViewComponentSettings.prototype, "fields", void 0);
     TableViewComponentSettings = __decorate([
-        ViewSettingsDecorators_1.WidgetView({ name: "Table", selector: "table-view", id: "table" }), 
+        ViewSettingsDecorators_1.WidgetViewSettings({ name: "Table", selector: "table-view", id: "table" }), 
         __metadata('design:paramtypes', [])
     ], TableViewComponentSettings);
     return TableViewComponentSettings;
-})();
-var TableField = (function () {
-    function TableField() {
-    }
-    return TableField;
 })();
 //# sourceMappingURL=TableViewComponent.js.map

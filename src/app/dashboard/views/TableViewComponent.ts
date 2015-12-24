@@ -2,7 +2,8 @@ import {Component, Input, OnChanges} from 'angular2/core';
 import {WidgetViewTypeModel} from "../models/WidgetViewTypeModel";
 import {ViewTypeComponentInterface} from "../interfaces/ViewTypeComponentInterface";
 import {Response} from "angular2/http";
-import {ViewSettingProperty, WidgetView} from "../reflection/ViewSettingsDecorators";
+import {WidgetViewSettings, WidgetViewSettingType, WidgetViewSetting} from "../reflection/ViewSettingsDecorators";
+import {WidgetViewSettingTypeField} from "../reflection/ViewSettingsDecorators";
 
 @Component({
 	selector: "table-view",
@@ -34,13 +35,18 @@ export class TableViewComponent implements ViewTypeComponentInterface{
 	@Input() data:any[];
 }
 
-@WidgetView({ name: "Table", selector: "table-view", id: "table" })
-class TableViewComponentSettings{
-	@ViewSettingProperty({ name: "Table Fields", type: "String" })
-	fields:Array<TableField>;
+@WidgetViewSettingType({ name: "Field", id: "field" })
+export class TableField{
+
+	@WidgetViewSettingTypeField({ name: "ID", type: "string" })
+	id:string;
+
+	@WidgetViewSettingTypeField({ name: "Name", type: "string" })
+	name:string;
 }
 
-class TableField{
-	id:string;
-	name:string;
+@WidgetViewSettings({ name: "Table", selector: "table-view", id: "table" })
+class TableViewComponentSettings{
+	@WidgetViewSetting({ name: "Table Fields", list: { itemType: "field" } })
+	fields:Array<TableField>;
 }

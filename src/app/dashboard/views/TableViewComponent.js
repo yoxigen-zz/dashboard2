@@ -34,7 +34,10 @@ var TableViewComponent = (function () {
 })();
 exports.TableViewComponent = TableViewComponent;
 var TableField = (function () {
-    function TableField() {
+    function TableField(id, name, type) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
     }
     __decorate([
         ViewSettingsDecorators_2.WidgetViewSettingTypeField({ name: "ID", type: "string" }), 
@@ -44,9 +47,21 @@ var TableField = (function () {
         ViewSettingsDecorators_2.WidgetViewSettingTypeField({ name: "Name", type: "string" }), 
         __metadata('design:type', String)
     ], TableField.prototype, "name", void 0);
+    __decorate([
+        ViewSettingsDecorators_2.WidgetViewSettingTypeField({
+            name: "Type",
+            type: "string",
+            options: [
+                { id: "string", name: "String" },
+                { id: "number", name: "Number" },
+                { id: "date", name: "Date" }
+            ]
+        }), 
+        __metadata('design:type', String)
+    ], TableField.prototype, "type", void 0);
     TableField = __decorate([
         ViewSettingsDecorators_1.WidgetViewSettingType({ name: "Field", id: "field" }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [String, String, String])
     ], TableField);
     return TableField;
 })();
@@ -59,7 +74,19 @@ var TableViewComponentSettings = (function () {
         __metadata('design:type', Array)
     ], TableViewComponentSettings.prototype, "fields", void 0);
     TableViewComponentSettings = __decorate([
-        ViewSettingsDecorators_1.WidgetViewSettings({ name: "Table", selector: "table-view", id: "table" }), 
+        ViewSettingsDecorators_1.WidgetViewSettings({
+            name: "Table",
+            selector: "table-view",
+            id: "table",
+            getSettings: function (dataSource) {
+                var settings = {
+                    fields: dataSource.properties.map(function (property) {
+                        return new TableField(property.name, property.name, property.type);
+                    })
+                };
+                return settings;
+            }
+        }), 
         __metadata('design:paramtypes', [])
     ], TableViewComponentSettings);
     return TableViewComponentSettings;

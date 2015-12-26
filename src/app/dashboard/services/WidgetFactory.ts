@@ -8,7 +8,7 @@ export class WidgetFactory{
 	constructor(private http:Http, private dataSources:DataSources){
 	}
 
-	public createWidget(widgetConfig?:WidgetModelConfig){
+	public createWidget(widgetConfig?:WidgetModelConfig):WidgetModel{
 		return new WidgetModel(this.http, this.dataSources, widgetConfig);
 	}
 }

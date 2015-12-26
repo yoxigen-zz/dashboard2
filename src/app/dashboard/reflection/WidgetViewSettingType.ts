@@ -1,5 +1,6 @@
 import {WidgetViewSetting} from "./WidgetViewSetting";
 import {WidgetViewSettingsInterface} from "./WidgetViewSettingsInterface";
+import {WidgetViewSettingDefaultValues} from "./WidgetViewSettingDefaultValues";
 
 export class WidgetViewSettingType implements WidgetViewSettingsInterface{
 	private _settings:Array<WidgetViewSetting> = Object.freeze([]);
@@ -19,6 +20,10 @@ export class WidgetViewSettingType implements WidgetViewSettingsInterface{
 	}
 
 	getDefaultSettings():Object{
-		return {};
+		let defaultSettings = {};
+		this.settings.forEach((setting:WidgetViewSetting) => {
+			defaultSettings[setting.id] = WidgetViewSettingDefaultValues.getDefaultSettingValue(setting);
+		});
+		return defaultSettings;
 	}
 }

@@ -7,6 +7,10 @@ import {DashboardReflection} from "../../dashboard/reflection/DashboardReflectio
 import {Utils} from "../../dashboard/services/utils";
 import {WidgetViewModelConfig} from "../../dashboard/models/WidgetViewModel";
 import {WidgetViewSettingsComponent} from "./WidgetViewSettingsComponent";
+import {WidgetViewSetting} from "../../dashboard/reflection/WidgetViewSetting";
+import addView = DashboardReflection.addView;
+import {WidgetViewSettingDescription} from "../../dashboard/reflection/WidgetViewSettingDescription";
+import {WidgetModel} from "../../dashboard/models/WidgetModel";
 
 @Component({
 	selector: "widget-settings",
@@ -22,7 +26,7 @@ import {WidgetViewSettingsComponent} from "./WidgetViewSettingsComponent";
 							(ngModelChange)="onSettingChange(setting)">
 							<option *ngFor="#option of setting.options" [value]="option.id">{{option.name}}</option>
 						</select>
-						<input type="text" *ngSwitchWhen="'string'" [(ngModel)]="widgetSettingValues[setting.id]" (ngModelChange)="onSettingChange(setting)" />
+						<input type="text" *ngSwitchWhen="'string'" [(ngModel)]="widgetSettingValues[setting.id]" (ngModelChange)="onSettingChange({ setting: setting.id, value: widgetSettingValues[setting.id] })" />
 					</label>
 				</li>
 			</ul>
@@ -34,9 +38,9 @@ import {WidgetViewSettingsComponent} from "./WidgetViewSettingsComponent";
 				</select>
 				<button (click)="addView()">Add View</button>
 				<ul>
-					<li *ngFor="#view of widgetViews">
-						<h5>{{view.name}}</h5>
-						<widget-view-settings [widgetViewSettings]="view"></widget-view-settings>
+					<li *ngFor="#view of widgetSettingValues.views; #i=index">
+						<h5>{{view.type}}</h5>
+						<widget-view-settings [widgetViewOptions]="view" (update)="onViewChange($event, i)"></widget-view-settings>
 					</li>
 				</ul>
 			</div>
@@ -46,69 +50,75 @@ import {WidgetViewSettingsComponent} from "./WidgetViewSettingsComponent";
 export class WidgetSettingsComponent{
 	@Output() update:EventEmitter<any> = new EventEmitter();
 
+	widget:WidgetModel;
+
 	viewTypes:Array<WidgetViewSettings>;
 	viewTypesMap:Map<string, WidgetViewSettings>;
 
 	currentWidgetViewTypeId:string;
 
+	views:Array<WidgetViewModel> = Object.freeze([]);
+
 	constructor(private widgetFactory:WidgetFactory, private dataSources:DataSources){
 		this.viewTypes = DashboardReflection.views;
-		this.viewTypesMap = Utils.Arrays.toMap(this.viewTypes);
+		this.viewTypesMap = DashboardReflection.viewTypesMap;
 	}
 
-	widgetSettings = [
+	widgetSettings:Array<WidgetViewSetting> = [
 		{ id: "id", type: "string", name: "ID", required: true },
 		{ id: "title", type: "string", name: "Widget Title", required: true },
 		{ id: "dataSource", type: "select", name: "Data Source", options: this.dataSources.allDataSources, required: true }
-	];
+	].map((widgetSettingOptions:WidgetViewSettingDescription) => {
+		return new WidgetViewSetting(widgetSettingOptions.id, widgetSettingOptions);
+	});
 
 	widgetViews:Array<WidgetViewSettings> = [];
 
 	addView(){
 		let viewType = this.viewTypesMap.get(this.currentWidgetViewTypeId);
+		let dataSource = this.dataSources.getDataSourceById(this.widgetSettingValues.dataSource);
+
+		let view = {
+			type: viewType.id,
+			settings: viewType.getSettings(dataSource)
+		};
+
 		this.widgetViews.push(viewType);
+		this.widgetSettingValues.views = Object.freeze(this.widgetSettingValues.views.concat([view]));
+		this.onSettingChange();
+	}
+
+	onDataSourceChange(){
+		var dataSource = this.dataSources.getDataSourceById(this.widgetSettingValues.dataSource);
+		var self = this;
+
+		this.widgetSettingValues.views.forEach(view => {
+			let viewType = self.viewTypesMap.get(view.type);
+			view.settings = viewType.getSettings(dataSource);
+		});
 	}
 
 	widgetSettingValues = {
 		id: "newWidgetID",
 		title: "New Widget",
 		dataSource: this.dataSources.allDataSources[0].id,
-		views: [
-			{
-				"type": "bars",
-				"settings": {
-					"valueProperty": "value",
-					"color": {
-						"conditional": {
-							"defaultValue": "$primary",
-							"conditionGroups": [
-								{
-									"conditions": [
-										{
-											"operator": "<=",
-											"value": 3
-										}
-									],
-									"output": "Red"
-								},
-								{
-									"conditions": [
-										{
-											"operator": "<",
-											"value": 7
-										}
-									],
-									"output": "Orange"
-								}
-							]
-						}
-					}
-				}
-			}
-		]
+		views: []
 	};
 
-	onSettingChange(){
-		this.update.emit({ widget: this.widgetFactory.createWidget(this.widgetSettingValues) });
+	onViewChange(widgetViewOptions:WidgetViewModelConfig, viewIndex:number){
+		let widgetSettings = Object.assign({}, this.widgetSettingValues);
+		widgetSettings.views = widgetSettings.views.slice(0);
+		widgetSettings.views[viewIndex] = widgetViewOptions;
+
+		let widget = this.widgetFactory.createWidget(widgetSettings);
+		this.update.emit({ widget: widget });
+	}
+
+	onSettingChange(settingData?:{setting:string }){
+		if (settingData && settingData.setting === "dataSource")
+			this.onDataSourceChange();
+
+		let widget = this.widgetFactory.createWidget(this.widgetSettingValues);
+		this.update.emit({ widget: widget });
 	}
 }

@@ -10,6 +10,7 @@ import {WidgetViewSettingType} from "./WidgetViewSettingType";
 export module DashboardReflection{
 	export var views:Array<WidgetViewSettings> = Object.freeze([]);
 
+	export var viewTypesMap:Map<string, WidgetViewSettings> = new Map<string, WidgetViewSettings>();
 	var viewsMap:Map<string, WidgetViewSettings> = new Map<string, WidgetViewSettings>();
 	var unusedSettings:Map<string, Array<WidgetViewSetting>>;
 	var unusedSettingTypesSettings:Map<string, Array<WidgetViewSetting>>;
@@ -26,6 +27,7 @@ export module DashboardReflection{
 		var viewSettings = new WidgetViewSettings(viewDescription);
 		views = Object.freeze(views.concat([viewSettings]));
 		viewsMap.set(viewName, viewSettings);
+		viewTypesMap.set(viewSettings.id, viewSettings);
 
 		let unusedViewSettings = unusedSettings && unusedSettings.get(viewName);
 		if (unusedViewSettings){

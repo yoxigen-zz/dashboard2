@@ -4,13 +4,16 @@ import {WidgetViewSetting} from "./WidgetViewSetting";
 import {WidgetViewModel} from "../models/WidgetViewModel";
 import {WidgetViewModelConfig} from "../models/WidgetViewModel";
 import {WidgetViewSettingsInterface} from "./WidgetViewSettingsInterface";
+import {DataSourceModel} from "../models/DataSourceModel";
+import {WidgetViewSettingDefaultValues} from "./WidgetViewSettingDefaultValues";
 
-export class WidgetViewSettings implements WidgetViewDescription, WidgetViewSettingsInterface{
+export class WidgetViewSettings implements WidgetViewSettingsInterface{
 	private _settings:Array<WidgetViewSetting>;
 
 	id:string;
 	name:string;
 	selector:string;
+	getSettings: (dataSource:DataSourceModel) => Object;
 
 	constructor(viewDescription:WidgetViewDescription){
 		Object.assign(this, viewDescription);
@@ -32,30 +35,12 @@ export class WidgetViewSettings implements WidgetViewDescription, WidgetViewSett
 		var defaultSettings = {};
 
 		this.settings.forEach(setting => {
-			defaultSettings[setting.id] = this.getDefaultSettingValue(setting);
+			defaultSettings[setting.id] = WidgetViewSettingDefaultValues.getDefaultSettingValue(setting);
 		});
 
 		return {
 			type: this.id,
 			settings: defaultSettings
 		};
-	}
-
-	private getDefaultSettingValue(setting:WidgetViewSetting):any{
-		if (setting.list)
-			return [];
-
-		switch(setting.type){
-			case "string":
-				return "";
-			case "number":
-				return 1;
-			case "boolean":
-				return true;
-			case "field":
-				return { id: "field_id", name: "Field Name" };
-			default:
-				return null;
-		}
 	}
 }

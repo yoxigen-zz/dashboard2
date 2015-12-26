@@ -4,6 +4,7 @@ import {ViewTypeComponentInterface} from "../interfaces/ViewTypeComponentInterfa
 import {Response} from "angular2/http";
 import {WidgetViewSettings, WidgetViewSettingType, WidgetViewSetting} from "../reflection/ViewSettingsDecorators";
 import {WidgetViewSettingTypeField} from "../reflection/ViewSettingsDecorators";
+import {DataSourceModel} from "../models/DataSourceModel";
 
 @Component({
 	selector: "table-view",
@@ -43,9 +44,39 @@ export class TableField{
 
 	@WidgetViewSettingTypeField({ name: "Name", type: "string" })
 	name:string;
+
+	@WidgetViewSettingTypeField({
+		name: "Type",
+		type: "string",
+		options: [
+			{ id: "string", name: "String" },
+			{ id: "number", name: "Number" },
+			{ id: "date", name: "Date" }
+		]
+	})
+	type:string;
+
+	constructor(id:string, name:string, type:string){
+		this.id = id;
+		this.name = name;
+		this.type = type;
+	}
 }
 
-@WidgetViewSettings({ name: "Table", selector: "table-view", id: "table" })
+@WidgetViewSettings({
+	name: "Table",
+	selector: "table-view",
+	id: "table",
+	getSettings: (dataSource:DataSourceModel):Object => {
+		let settings = {
+			fields: dataSource.properties.map((property:{ name:string, type:string }):TableField => {
+				return new TableField(property.name, property.name, property.type);
+			})
+		};
+
+		return settings;
+	}
+})
 class TableViewComponentSettings{
 	@WidgetViewSetting({ name: "Table Fields", list: { itemType: "field" } })
 	fields:Array<TableField>;

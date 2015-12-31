@@ -1,4 +1,5 @@
 import {WidgetViewSetting} from "./WidgetViewSetting";
+import {PropertyType} from "./PropertyType";
 
 export module WidgetViewSettingDefaultValues{
 	export function getDefaultSettingValue(setting:WidgetViewSetting):any{
@@ -6,16 +7,18 @@ export module WidgetViewSettingDefaultValues{
 			return [];
 
 		switch(setting.type){
-			case "string":
+			case PropertyType.String:
 				return "";
-			case "number":
+			case PropertyType.Number:
 				return 1;
-			case "boolean":
+			case PropertyType.Boolean:
 				return true;
-			case "field":
+			case PropertyType.Field:
 				return { id: "field_id", name: "Field Name" };
-			case "list":
+			case PropertyType.List:
 				return [];
+			case PropertyType.Type:
+				return PropertyType.String;
 			default:
 				return null;
 		}

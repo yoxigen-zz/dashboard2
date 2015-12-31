@@ -10,6 +10,7 @@ import {DashboardReflection} from "../../dashboard/reflection/DashboardReflectio
 import {EventEmitter} from "angular2/core";
 import {WidgetViewSetting} from "../../dashboard/reflection/WidgetViewSetting";
 import {Output} from "angular2/core";
+import {DataSourceModel} from "../../dashboard/models/DataSourceModel";
 
 @Component({
 	selector: "widget-view-settings",
@@ -18,20 +19,26 @@ import {Output} from "angular2/core";
 		<ul *ngIf="widgetViewSettings">
 			<li *ngFor="#setting of widgetViewSettings.settings">
 				({{setting.name}}):
-				<widget-view-setting [setting]="setting" [settingData]="widgetViewOptions.settings[setting.id]" (update)="onSettingChange($event)"></widget-view-setting>
+				<widget-view-setting
+					[setting]="setting"
+					[settingData]="view.settings[setting.id]"
+					[dataSource]="dataSource"
+					(update)="onSettingChange($event)"></widget-view-setting>
 			</li>
 		</ul>
 	`
 })
 export class WidgetViewSettingsComponent implements OnChanges{
-	@Input() widgetViewOptions:WidgetViewModelConfig;
+	@Input() view:WidgetViewModelConfig;
+	@Input() dataSource:DataSourceModel;
+
 	@Output() update:EventEmitter<WidgetViewModelConfig> = new EventEmitter();
 
 	widgetViewSettings:WidgetViewSettings;
 	widgetViewSettingsValues:WidgetViewModelConfig;
 
 	ngOnChanges(changes:Object){
-		this.widgetViewSettings = DashboardReflection.viewTypesMap.get(this.widgetViewOptions.type);
+		this.widgetViewSettings = DashboardReflection.viewTypesMap.get(this.view.type);
 		this.widgetViewSettingsValues = this.widgetViewSettings.getDefaultSettings();
 	}
 

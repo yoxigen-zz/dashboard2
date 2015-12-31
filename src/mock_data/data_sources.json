@@ -7,11 +7,11 @@
 		"properties": [
 			{
 				"name": "name",
-				"type": "string"
+				"type": "String"
 			},
 			{
 				"name": "value",
-				"type": "number"
+				"type": "Number"
 			}
 		]
 	},
@@ -23,15 +23,15 @@
 		"properties": [
 			{
 				"name": "id",
-				"type": "number"
+				"type": "Number"
 			},
 			{
 				"name": "name",
-				"type": "string"
+				"type": "String"
 			},
 			{
 				"name": "age",
-				"type": "number"
+				"type": "Number"
 			}
 		]
 	},
@@ -43,11 +43,11 @@
 		"properties": [
 			{
 				"name": "name",
-				"type": "string"
+				"type": "String"
 			},
 			{
 				"name": "value",
-				"type": "number"
+				"type": "Number"
 			}
 		]
 	},
@@ -59,11 +59,11 @@
 		"properties": [
 			{
 				"name": "name",
-				"type": "string"
+				"type": "String"
 			},
 			{
 				"name": "value",
-				"type": "number"
+				"type": "Number"
 			}
 		]
 	}

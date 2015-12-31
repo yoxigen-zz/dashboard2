@@ -12,6 +12,18 @@ export module Utils{
 
 			return map;
 		}
+
+		export function spliceImmutable<T>(items:Array<T>, item:T):Array<T>{
+			let itemIndex = items.indexOf(item);
+			if (~itemIndex){
+				let itemsBefore = items.slice(0, itemIndex),
+					itemsAfter = items.slice(itemIndex + 1);
+
+				return itemsBefore.concat(itemsAfter);
+			}
+
+			return null;
+		}
 	}
 
 	export module Objects {

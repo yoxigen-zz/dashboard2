@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var ViewSettingsDecorators_1 = require("../reflection/ViewSettingsDecorators");
 var ViewSettingsDecorators_2 = require("../reflection/ViewSettingsDecorators");
+var PropertyType_1 = require("../reflection/PropertyType");
 var TableViewComponent = (function () {
     function TableViewComponent() {
     }
@@ -37,31 +38,26 @@ var TableField = (function () {
     function TableField(id, name, type) {
         this.id = id;
         this.name = name;
-        this.type = type;
+        this.type = PropertyType_1.PropertyType[type];
     }
     __decorate([
-        ViewSettingsDecorators_2.WidgetViewSettingTypeField({ name: "ID", type: "string" }), 
+        ViewSettingsDecorators_2.WidgetViewSettingTypeField({ name: "ID", type: PropertyType_1.PropertyType.String, fromDataSource: true }), 
         __metadata('design:type', String)
     ], TableField.prototype, "id", void 0);
     __decorate([
-        ViewSettingsDecorators_2.WidgetViewSettingTypeField({ name: "Name", type: "string" }), 
+        ViewSettingsDecorators_2.WidgetViewSettingTypeField({ name: "Name", type: PropertyType_1.PropertyType.String }), 
         __metadata('design:type', String)
     ], TableField.prototype, "name", void 0);
     __decorate([
         ViewSettingsDecorators_2.WidgetViewSettingTypeField({
             name: "Type",
-            type: "string",
-            options: [
-                { id: "string", name: "String" },
-                { id: "number", name: "Number" },
-                { id: "date", name: "Date" }
-            ]
+            type: PropertyType_1.PropertyType.Type
         }), 
         __metadata('design:type', String)
     ], TableField.prototype, "type", void 0);
     TableField = __decorate([
         ViewSettingsDecorators_1.WidgetViewSettingType({ name: "Field", id: "field" }), 
-        __metadata('design:paramtypes', [String, String, String])
+        __metadata('design:paramtypes', [String, String, Number])
     ], TableField);
     return TableField;
 })();

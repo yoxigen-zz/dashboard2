@@ -18,6 +18,77 @@ h1, h2, h3, h4, h5, h6 {
 .pull-left {
   float: left; }
 
+.flex, .flex-horizontal, .flex-horizontal-large, .widget-builder, .flex-vertical, my-app, .flex-center-vertical, .flex-center-horizontal {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  min-height: 0; }
+
+.flex-horizontal, .flex-horizontal-large, .widget-builder {
+  -webkit-box-orient: horizontal;
+  -webkit-flex-flow: row;
+  flex-flow: row;
+  flex-direction: row; }
+  .flex-horizontal.flex-reverse, .flex-reverse.flex-horizontal-large, .flex-reverse.widget-builder {
+    flex-direction: row-reverse; }
+
+@media all and (max-width: 800px) {
+  .flex-horizontal-large {
+    display: block; }
+    .flex-horizontal-large > *:not(:last-child) {
+      margin-bottom: .5rem; } }
+
+.flex-vertical, my-app {
+  -webkit-box-orient: vertical;
+  -webkit-flex-flow: column;
+  flex-flow: column;
+  flex-direction: column; }
+  .flex-vertical.flex-reverse, my-app.flex-reverse {
+    flex-direction: column-reverse; }
+
+.flex-center-vertical {
+  -webkit-align-items: center;
+  align-items: center; }
+
+.flex-center-horizontal {
+  -webkit-justify-content: center;
+  justify-content: center; }
+
+.flex-1, .widget-builder .widget-builder-canvas, my-app dashboard-page {
+  flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  min-height: 0; }
+
+.flex-2 {
+  flex: 2;
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  min-height: 0; }
+
+.flex-3 {
+  flex: 3;
+  -webkit-box-flex: 3;
+  -webkit-flex: 3;
+  min-height: 0; }
+
+.flex-4 {
+  flex: 4;
+  -webkit-box-flex: 4;
+  -webkit-flex: 4;
+  min-height: 0; }
+
+.flex-5 {
+  flex: 5;
+  -webkit-box-flex: 5;
+  -webkit-flex: 5;
+  min-height: 0; }
+
+.flex-0, .flex-none, .widget-builder .widget-builder-settings, my-app app-nav {
+  flex: none;
+  -webkit-box-flex: none;
+  -webkit-flex: none; }
+
 .dashboard-color-error {
   color: #cc3a3a; }
 
@@ -672,5 +743,31 @@ h1, h2, h3, h4, h5, h6 {
 
 .widget-dark label, .widget-dark .bars-chart-bar.outter-value, .widget-dark .bars-chart-icon, .widget-dark .bars-chart-legend {
   color: White; }
+
+widget-builder {
+  display: block;
+  height: 100%; }
+
+.widget-builder {
+  height: 100%; }
+  .widget-builder .widget-builder-settings {
+    width: 300px;
+    border-right: solid 1px Grey;
+    padding: 1rem;
+    height: 100%;
+    overflow: auto; }
+    .widget-builder .widget-builder-settings ul {
+      list-style: none;
+      margin: 0 0 0 1rem;
+      padding: 0 0 1rem; }
+
+my-app {
+  height: 100%;
+  display: block; }
+  my-app app-nav {
+    display: block; }
+  my-app dashboard-page {
+    display: block;
+    height: 100%; }
 
 /*# sourceMappingURL=style.css.map */

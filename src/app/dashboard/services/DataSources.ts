@@ -13,11 +13,11 @@ export class DataSources{
 			"properties": [
 				{
 					"name": "name",
-					"type": "string"
+					"type": "String"
 				},
 				{
 					"name": "value",
-					"type": "number"
+					"type": "Number"
 				}
 			]
 		},
@@ -29,15 +29,15 @@ export class DataSources{
 			"properties": [
 				{
 					"name": "id",
-					"type": "number"
+					"type": "Number"
 				},
 				{
 					"name": "name",
-					"type": "string"
+					"type": "String"
 				},
 				{
 					"name": "age",
-					"type": "number"
+					"type": "Number"
 				}
 			]
 		},
@@ -49,11 +49,11 @@ export class DataSources{
 			"properties": [
 				{
 					"name": "name",
-					"type": "string"
+					"type": "String"
 				},
 				{
 					"name": "value",
-					"type": "number"
+					"type": "Number"
 				}
 			]
 		},
@@ -65,19 +65,19 @@ export class DataSources{
 			"properties": [
 				{
 					"name": "name",
-					"type": "string"
+					"type": "String"
 				},
 				{
 					"name": "value",
-					"type": "number"
+					"type": "Number"
 				}
 			]
 		}
 	].map(dataSourceModelConfig => { return new DataSourceModel(dataSourceModelConfig)});
 
-	private dataSourcesMap:Map<string,DataSourceModel> = Utils.Arrays.toMap(this.allDataSources);
+	private dataSourcesMap:Map<String,DataSourceModel> = Utils.Arrays.toMap(this.allDataSources);
 
-	getDataSourceById(dataSourceId:string):DataSourceModel{
+	getDataSourceById(dataSourceId:String):DataSourceModel{
 		return this.dataSourcesMap.get(dataSourceId);
 	}
 }

@@ -10,7 +10,7 @@ export class WidgetModel{
     title:string;
     lastUpdateTime:Date;
 	dataSource:DataSourceModel;
-	views:WidgetViewModel[];
+	views:WidgetViewModel[] = Object.freeze([]);
 	data:any;
 	data$:Observable<any>;
 	private _dataObserver:Subscriber<any>;
@@ -23,11 +23,19 @@ export class WidgetModel{
 			this.dataSource = dataSources.getDataSourceById(config.dataSource);
 
 			if (config.views)
-				this.views = Utils.Objects.toObjectArray(config.views, WidgetViewModel);
+				this.views = Object.freeze(Utils.Objects.toObjectArray(config.views, WidgetViewModel));
 		}
 
 		this.data$ = new Observable(observer => this._dataObserver = observer).share();
     }
+
+	addView(view:WidgetViewModel){
+		this.views = Object.freeze(this.views.concat([view]));
+	}
+
+	removeView(view:WidgetViewModel){
+		this.views = Utils.Arrays.spliceImmutable(this.views, view);
+	}
 
     /**
      * Refreshes the widget's data
@@ -50,6 +58,10 @@ export class WidgetModel{
 
         this.lastUpdateTime = new Date;
     }
+
+	setDataSource(dataSourceId:string):DataSourceModel{
+		return this.dataSource = this.dataSources.getDataSourceById(dataSourceId);
+	}
 }
 
 export interface WidgetModelConfig{

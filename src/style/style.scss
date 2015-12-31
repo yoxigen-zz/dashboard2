@@ -23,8 +23,90 @@ h1, h2, h3, h4, h5, h6{
   float: left;
 }
 
+.flex{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	min-height: 0;
+}
+
+.flex-horizontal{
+	@extend .flex;
+
+	-webkit-box-orient: horizontal;
+	-webkit-flex-flow: row;
+	flex-flow: row;
+	flex-direction: row;
+
+	&.flex-reverse{
+		flex-direction: row-reverse;
+	}
+}
+
+.flex-horizontal-large{
+	@extend .flex-horizontal;
+
+	@media all and (max-width: 800px){
+		display: block;
+
+		& > *:not(:last-child){
+			margin-bottom: .5rem;
+		}
+	}
+}
+
+.flex-vertical{
+	@extend .flex;
+
+	-webkit-box-orient: vertical;
+	-webkit-flex-flow: column;
+	flex-flow: column;
+	flex-direction: column;
+
+	&.flex-reverse{
+		flex-direction: column-reverse;
+	}
+}
+
+.flex-center-vertical{
+	@extend .flex;
+
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.flex-center-horizontal{
+	@extend .flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+@mixin flexSize($size){
+	.flex-#{$size}{
+		flex: #{$size};
+		-webkit-box-flex: #{$size};
+		-webkit-flex: #{$size};
+		min-height: 0;
+	}
+}
+
+@include flexSize(1);
+@include flexSize(2);
+@include flexSize(3);
+@include flexSize(4);
+@include flexSize(5);
+
+.flex-0, .flex-none{
+	flex: none;
+	-webkit-box-flex: none;
+	-webkit-flex: none;
+}
+
+
 @import "colors";
 @import "vars";
 @import "dashboard";
 @import "main-nav";
 @import "views/bars_chart";
+@import "widget-builder";
+@import "scaffold";

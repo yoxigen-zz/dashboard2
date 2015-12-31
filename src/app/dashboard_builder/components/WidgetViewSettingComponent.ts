@@ -7,11 +7,20 @@ import {DashboardReflection} from "../../dashboard/reflection/DashboardReflectio
 import {WidgetViewSettingsComponent} from "./WidgetViewSettingsComponent";
 import {EventEmitter} from "angular2/core";
 import {Output} from "angular2/core";
+import {PropertyType, PropertyTypes} from "../../dashboard/reflection/PropertyType";
+import {DataSourceModel} from "../../dashboard/models/DataSourceModel";
 
 @Component({
 	selector: "widget-view-setting",
 	directives: [WidgetViewSettingComponent],
 	template: `
+		<div *ngIf="setting.fromDataSource && dataSource">
+			<select
+				[(ngModel)]="settingData"
+				(ngModelChange)="onSettingChange()">
+				<option *ngFor="#dataProperty of dataSource.properties" [value]="dataProperty.name">{{dataProperty.name}}</option>
+			</select>
+		</div>
 		<div *ngIf="setting.list && listItemType">
 			<ul>
 				<li *ngFor="#listItem of settingData; #i=index">
@@ -21,6 +30,7 @@ import {Output} from "angular2/core";
 							<widget-view-setting
 								[setting]="listItemSetting"
 								[settingData]="listItem[listItemSetting.id]"
+								[dataSource]="dataSource"
 								(update)="onListItemChange($event, i)"></widget-view-setting>
 						</li>
 					</ul>
@@ -28,20 +38,28 @@ import {Output} from "angular2/core";
 			</ul>
 			<button (click)="addListItem()">Add Item</button>
 		</div>
-		<div *ngIf="!setting.list" [ngSwitch]="setting.type">
-			<input type="text" *ngSwitchWhen="'string'" [(ngModel)]="settingData" (ngModelChange)="onSettingChange()" />
-			<input type="number" *ngSwitchWhen="'number'" [(ngModel)]="settingData" (ngModelChange)="onSettingChange()" />
-			<input type="date" *ngSwitchWhen="'date'" [(ngModel)]="settingData" (ngModelChange)="onSettingChange()" />
+		<div *ngIf="!setting.list && !setting.fromDataSource" [ngSwitch]="setting.type">
+			<input type="text" *ngSwitchWhen="propertyType.String" [(ngModel)]="settingData" (ngModelChange)="onSettingChange()" />
+			<input type="number" *ngSwitchWhen="propertyType.Number" [(ngModel)]="settingData" (ngModelChange)="onSettingChange()" />
+			<input type="date" *ngSwitchWhen="propertyType.Date" [(ngModel)]="settingData" (ngModelChange)="onSettingChange()" />
+			<select *ngSwitchWhen="propertyType.Type"
+				[(ngModel)]="settingData"
+				(ngModelChange)="onSettingChange()">
+				<option *ngFor="#p of propertyTypes" [value]="p">{{propertyType[p]}}</option>
+			</select>
 		</div>
 	`
 })
 export class WidgetViewSettingComponent implements OnChanges{
 	@Input() setting:WidgetViewSetting;
 	@Input() settingData:any;
+	@Input() dataSource:DataSourceModel;
 
 	@Output() update:EventEmitter<{ setting:WidgetViewSetting, value:any }> = new EventEmitter();
 
 	listItemType:WidgetViewSettingType;
+	propertyType = PropertyType;
+	propertyTypes = PropertyTypes;
 
 	addListItem(){
 		this.settingData = Object.freeze((this.settingData || []).concat([this.listItemType.getDefaultSettings()]));

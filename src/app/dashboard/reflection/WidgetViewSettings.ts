@@ -43,4 +43,11 @@ export class WidgetViewSettings implements WidgetViewSettingsInterface{
 			settings: defaultSettings
 		};
 	}
+
+	createView():WidgetViewModel{
+		return new WidgetViewModel({
+			type: this.id,
+			settings: this.getDefaultSettings()
+		});
+	}
 }

@@ -1,3 +1,4 @@
+import {Input} from "angular2/core";
 import {Component, Output, EventEmitter} from "angular2/core";
 import {WidgetFactory} from "../../dashboard/services/WidgetFactory";
 import {DataSources} from "../../dashboard/services/DataSources";
@@ -11,22 +12,26 @@ import {WidgetViewSetting} from "../../dashboard/reflection/WidgetViewSetting";
 import addView = DashboardReflection.addView;
 import {WidgetViewSettingDescription} from "../../dashboard/reflection/WidgetViewSettingDescription";
 import {WidgetModel} from "../../dashboard/models/WidgetModel";
+import {PropertyType} from "../../dashboard/reflection/PropertyType";
+import {DataSourceModel} from "../../dashboard/models/DataSourceModel";
+import {WidgetModelConfig} from "../../dashboard/models/WidgetModel";
+import {OnChanges} from "angular2/core";
 
 @Component({
 	selector: "widget-settings",
 	directives: [WidgetViewSettingsComponent],
 	template: `
-		<div class="widget-builder-settings">
+		<div class="widget-builder-settings" *ngIf="widget">
 			<h1>Settings</h1>
 			<ul>
 				<li *ngFor="#setting of widgetSettings" [ngSwitch]="setting.type">
 					<label>{{setting.name}}
-						<select *ngSwitchWhen="'select'"
-							[(ngModel)]="widgetSettingValues[setting.id]"
-							(ngModelChange)="onSettingChange(setting)">
+						<select *ngSwitchWhen="propertyType.Select"
+							[(ngModel)]="widget[setting.id]"
+							(ngModelChange)="onSettingChange({ setting: setting, value: widget[setting.id]} )">
 							<option *ngFor="#option of setting.options" [value]="option.id">{{option.name}}</option>
 						</select>
-						<input type="text" *ngSwitchWhen="'string'" [(ngModel)]="widgetSettingValues[setting.id]" (ngModelChange)="onSettingChange({ setting: setting.id, value: widgetSettingValues[setting.id] })" />
+						<input type="text" *ngSwitchWhen="propertyType.String" [(ngModel)]="widget[setting.id]" (ngModelChange)="onSettingChange({ setting: setting.id, value: widget[setting.id] })" />
 					</label>
 				</li>
 			</ul>
@@ -38,19 +43,22 @@ import {WidgetModel} from "../../dashboard/models/WidgetModel";
 				</select>
 				<button (click)="addView()">Add View</button>
 				<ul>
-					<li *ngFor="#view of widgetSettingValues.views; #i=index">
+					<li *ngFor="#view of widget.views; #i=index">
 						<h5>{{view.type}}</h5>
-						<widget-view-settings [widgetViewOptions]="view" (update)="onViewChange($event, i)"></widget-view-settings>
+						<widget-view-settings
+							[view]="view"
+							[dataSource]="dataSource"
+							(update)="onViewChange($event, i)"></widget-view-settings>
+							<button (click)="removeView(view)">Remove View</button>
 					</li>
 				</ul>
 			</div>
 		</div>
 	`
 })
-export class WidgetSettingsComponent{
+export class WidgetSettingsComponent implements OnChanges{
 	@Output() update:EventEmitter<any> = new EventEmitter();
-
-	widget:WidgetModel;
+	@Input() widget:WidgetModelConfig;
 
 	viewTypes:Array<WidgetViewSettings>;
 	viewTypesMap:Map<string, WidgetViewSettings>;
@@ -58,67 +66,78 @@ export class WidgetSettingsComponent{
 	currentWidgetViewTypeId:string;
 
 	views:Array<WidgetViewModel> = Object.freeze([]);
+	propertyType = PropertyType;
 
-	constructor(private widgetFactory:WidgetFactory, private dataSources:DataSources){
-		this.viewTypes = DashboardReflection.views;
-		this.viewTypesMap = DashboardReflection.viewTypesMap;
-	}
+	dataSource:DataSourceModel;
 
 	widgetSettings:Array<WidgetViewSetting> = [
-		{ id: "id", type: "string", name: "ID", required: true },
-		{ id: "title", type: "string", name: "Widget Title", required: true },
-		{ id: "dataSource", type: "select", name: "Data Source", options: this.dataSources.allDataSources, required: true }
+		{ id: "id", type: PropertyType.String, name: "ID", required: true },
+		{ id: "title", type: PropertyType.String, name: "Widget Title", required: true },
+		{
+			id: "dataSource",
+			type: PropertyType.Select,
+			name: "Data Source",
+			options: this.dataSources.allDataSources,
+			required: true
+		}
 	].map((widgetSettingOptions:WidgetViewSettingDescription) => {
 		return new WidgetViewSetting(widgetSettingOptions.id, widgetSettingOptions);
 	});
 
-	widgetViews:Array<WidgetViewSettings> = [];
+	constructor(private widgetFactory:WidgetFactory, private dataSources:DataSources){
+		this.viewTypes = DashboardReflection.views;
+		this.viewTypesMap = DashboardReflection.viewTypesMap;
+		this.currentWidgetViewTypeId = this.viewTypesMap.get("table").id;
+	}
 
 	addView(){
 		let viewType = this.viewTypesMap.get(this.currentWidgetViewTypeId);
-		let dataSource = this.dataSources.getDataSourceById(this.widgetSettingValues.dataSource);
 
 		let view = {
 			type: viewType.id,
-			settings: viewType.getSettings(dataSource)
+			settings: viewType.getSettings(this.dataSource)
 		};
 
-		this.widgetViews.push(viewType);
-		this.widgetSettingValues.views = Object.freeze(this.widgetSettingValues.views.concat([view]));
-		this.onSettingChange();
+		this.widget.views.push(view);
+		this.onViewChange(view, this.widget.views.length - 1, "add");
+	}
+
+	removeView(view:WidgetViewModelConfig){
+		let viewIndex = this.widget.views.indexOf(view);
+		if (~viewIndex)
+			this.widget.views.splice(viewIndex, 1);
+
+		this.onViewChange(view, viewIndex, "remove");
 	}
 
 	onDataSourceChange(){
-		var dataSource = this.dataSources.getDataSourceById(this.widgetSettingValues.dataSource);
 		var self = this;
 
-		this.widgetSettingValues.views.forEach(view => {
+		this.widget.views.forEach(view => {
 			let viewType = self.viewTypesMap.get(view.type);
-			view.settings = viewType.getSettings(dataSource);
+			view.settings = viewType.getSettings(this.dataSource);
 		});
 	}
 
-	widgetSettingValues = {
-		id: "newWidgetID",
-		title: "New Widget",
-		dataSource: this.dataSources.allDataSources[0].id,
-		views: []
-	};
-
-	onViewChange(widgetViewOptions:WidgetViewModelConfig, viewIndex:number){
-		let widgetSettings = Object.assign({}, this.widgetSettingValues);
+	onViewChange(widgetViewOptions:WidgetViewModelConfig, viewIndex:number, action?:string){
+		let widgetSettings = Object.assign({}, this.widget);
 		widgetSettings.views = widgetSettings.views.slice(0);
 		widgetSettings.views[viewIndex] = widgetViewOptions;
 
-		let widget = this.widgetFactory.createWidget(widgetSettings);
-		this.update.emit({ widget: widget });
+		this.update.emit({ widget: widgetSettings, view: viewIndex, action: action || "change" });
 	}
 
-	onSettingChange(settingData?:{setting:string }){
-		if (settingData && settingData.setting === "dataSource")
+	onSettingChange(settingData?:{setting:WidgetViewSetting, value:any }, additionalData?:Object){
+		if (settingData && settingData.setting.id === "dataSource") {
+			this.dataSource = this.dataSources.getDataSourceById(settingData.value);
 			this.onDataSourceChange();
+		}
 
-		let widget = this.widgetFactory.createWidget(this.widgetSettingValues);
-		this.update.emit({ widget: widget });
+		this.update.emit(Object.assign({ widget: this.widget }, additionalData));
+	}
+
+	ngOnChanges(changes){
+		if (changes.widget && this.widget.dataSource)
+			this.dataSource = this.dataSources.getDataSourceById(this.widget.dataSource);
 	}
 }

@@ -6,15 +6,22 @@ var WidgetModel = (function () {
         var _this = this;
         this.http = http;
         this.dataSources = dataSources;
+        this.views = Object.freeze([]);
         if (config) {
             this.id = config.id;
             this.title = config.title;
             this.dataSource = dataSources.getDataSourceById(config.dataSource);
             if (config.views)
-                this.views = utils_1.Utils.Objects.toObjectArray(config.views, WidgetViewModel_1.WidgetViewModel);
+                this.views = Object.freeze(utils_1.Utils.Objects.toObjectArray(config.views, WidgetViewModel_1.WidgetViewModel));
         }
         this.data$ = new Rx_1.Observable(function (observer) { return _this._dataObserver = observer; }).share();
     }
+    WidgetModel.prototype.addView = function (view) {
+        this.views = Object.freeze(this.views.concat([view]));
+    };
+    WidgetModel.prototype.removeView = function (view) {
+        this.views = utils_1.Utils.Arrays.spliceImmutable(this.views, view);
+    };
     /**
      * Refreshes the widget's data
      */
@@ -34,6 +41,9 @@ var WidgetModel = (function () {
             };
         });
         this.lastUpdateTime = new Date;
+    };
+    WidgetModel.prototype.setDataSource = function (dataSourceId) {
+        return this.dataSource = this.dataSources.getDataSourceById(dataSourceId);
     };
     return WidgetModel;
 })();
